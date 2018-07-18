@@ -368,7 +368,7 @@ Si nginx ne se lance pas, essayez la commande permettant de tester la configurat
 /opt/etc/init.d/S80nginx test
 ```
 
-## Sur les épaules des géants :
+## 9. Sur les épaules des géants
 N'étant pas informaticien ou administrateur réseau, si j'ai pu faire tout cela, [c'est en montant sur les épaules des géants](https://fr.wikipedia.org/wiki/Des_nains_sur_des_%C3%A9paules_de_g%C3%A9ants). N'hésitez pas à consulter ces sites qui m'ont énormément aidé, pour adapter ce modeste tuto à votre situation :  
   
 1. Sauvageau E. asuswrt-merlin: Enhanced version of Asus’s router firmware (Asuswrt) - Wiki [En ligne]. 2018 [visité le 19 avr 2018]. Disponible sur : https://github.com/RMerl/asuswrt-merlin/wiki
