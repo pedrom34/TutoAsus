@@ -357,7 +357,7 @@ rm -r /jffs/acme.sh/
   
 Et on peut enfin lancer Nginx :
 ```shell
-/opt/etc/init.d/S80nginx start
+nginx -s start
 ```
 
 ## 8. Quelques mots en conclusion
@@ -365,9 +365,13 @@ Chez moi, nginx fonctionne très bien, mais une mise à jour du routeur peut sup
   
 Si nginx ne se lance pas, essayez la commande permettant de tester la configuration pour diagnostiquer les soucis :
 ```shell
-/opt/etc/init.d/S80nginx test
+nginx -s test
 ```
-
+En cas de modification du fichier de configuration on recharge la configuration, sans redémarrer nginx en faisant :
+```shell
+nginx -s reload
+```
+  
 ## 9. Sur les épaules des géants
 N'étant pas informaticien ou administrateur réseau, si j'ai pu faire tout cela, [c'est en montant sur les épaules des géants](https://fr.wikipedia.org/wiki/Des_nains_sur_des_%C3%A9paules_de_g%C3%A9ants). N'hésitez pas à consulter ces sites qui m'ont énormément aidé, pour adapter ce modeste tuto à votre situation :  
   
