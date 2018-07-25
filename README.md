@@ -365,7 +365,7 @@ Chez moi, nginx fonctionne très bien, mais une mise à jour du routeur peut sup
   
 Si nginx ne se lance pas, essayez la commande permettant de tester la configuration pour diagnostiquer les soucis :
 ```shell
-nginx -s test
+nginx -t
 ```
 En cas de modification du fichier de configuration on recharge la configuration, sans redémarrer nginx en faisant :
 ```shell
