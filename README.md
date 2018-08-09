@@ -357,7 +357,7 @@ rm -r /jffs/acme.sh/
   
 Et on peut enfin lancer Nginx :
 ```shell
-nginx -s start
+/opt/etc/init.d/S80nginx start
 ```
 
 ## 8. Quelques mots en conclusion
