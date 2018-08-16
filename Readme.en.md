@@ -1,6 +1,6 @@
 # Install a SSL reverse proxy on an Asus Router with OVH domain
 
-Lire dans une autre langue : [Français 🇫🇷](README.md), [English 🇬🇧](README.en.md).  
+Lire dans une autre langue : [Français 🇫🇷](README.md), [English 🇬🇧](Readme.en.md).  
 
 ## Menu
 0. [What? Why?]()
