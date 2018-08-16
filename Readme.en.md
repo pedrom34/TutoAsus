@@ -27,7 +27,7 @@ I originally did this markdown file to remember what I had done. So why not shar
   
 ## 1. Install Merlin on the router
 The Merlin firmware is a modification of the official Asus firmware. It has the advantage of offering many improvements without removing Asus pleasant graphical interface. It also allows Entware to be used - I'll come back to this a little later.  
-Installing Merlin is very simple, just download the firmware from https://asuswrt.lostrealm.ca/download, and flash the file from Administration > Firumware Upgrade.  
+Installing Merlin is very simple, just download the firmware from https://asuswrt.lostrealm.ca/download, and flash the file from Administration > Firmware Upgrade.  
 There is no real risk in using Merlin, as it is very easy to go back, and reinstall the official firmware.  
   
 ## 2. Activate SSH et JFFS partition
