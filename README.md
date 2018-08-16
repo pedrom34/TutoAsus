@@ -1,4 +1,6 @@
 # Installer un reverse proxy SSL sur un routeur Asus avec un nom de domaine Ovh
+  
+Read in other langages: [English 🇬🇧](README.en.md), [Français 🇫🇷](README.md).  
  
 ## Au menu
 0. [Quoi ? Pourquoi ?](#0-quoi--pourquoi-)
@@ -124,13 +126,13 @@ Tada ! Nous avons un nom de domaine qui pointe sur l'ip de notre routeur ! Et ce
 A noter que le script ddns-start considère par défaut que le routeur est, comme le mien, en double Nat derrière une box. Si ça n'est pas le cas, adaptez le script en rajoutant "#" devant "IP=$(wget..." à la ligne 29 du script.
 
 ## 5. Installer nginx
-Bon, maintenant que tout est bon, on installe Nginx.  
+Bon, maintenant que tout est bon, on installe nginx.  
 ```shell
 opkg install nginx-extras
 ```
 Pourquoi nginx-extras et pas nginx ? Simplement car nginx tout court n'inclus pas certains modules intéressants pour la sécurité https.
   
-On ajoute des règles dans le firewall pour que Nginx puisse écouter les ports 80 et 443 :  
+On ajoute des règles dans le firewall pour que nginx puisse écouter les ports 80 et 443 :  
 ```shell
 vi /jffs/scripts/firewall-start
 ```
@@ -355,7 +357,7 @@ On peut supprimer le dossier acme.sh présent dans jffs.
 rm -r /jffs/acme.sh/
 ```
   
-Et on peut enfin lancer Nginx :
+Et on peut enfin lancer nginx :
 ```shell
 /opt/etc/init.d/S80nginx start
 ```
@@ -378,7 +380,7 @@ N'étant pas informaticien ou administrateur réseau, si j'ai pu faire tout cela
 1. Sauvageau E. asuswrt-merlin: Enhanced version of Asus’s router firmware (Asuswrt) - Wiki [En ligne]. 2018 [visité le 19 avr 2018]. Disponible sur : https://github.com/RMerl/asuswrt-merlin/wiki
 2. Neilpang. acme.sh: A pure Unix shell script implementing ACME client protocol - Wiki [En ligne]. 2018 [visité le 19 avr 2018]. Disponible sur : https://github.com/Neilpang/acme.sh/wiki
 3. Xuplus. 搞定Merlin使用DNS实现Let’s Encrpt证书，使用SSL安全访问后台 - 梅林 - KoolShare - 源于玩家 服务玩家 [En ligne]. Koolshare. 2016 [visité le 19 avr 2018]. Disponible sur : http://koolshare.cn/thread-79146-1-1.html
-4. HTPC Guides [En ligne]. Mike. Use Afraid Custom Dynamic DNS on Asus Routers; 17 mai 2016 [visité le le 19 avr 2018]. Disponible: https://www.htpcguides.com/use-afraid-custom-dynamic-dns-asus-routers/
-5. Törnqvist G. Nginx Reverse Proxy on Asus Merlin [En ligne]. Göran Törnqvist Website. 2015 [visité le 19 avr 2018]. Disponible sur : http://goran.tornqvist.ws/nginx-reverse-proxy-on-asus-merlin/
+4. HTPC Guides [En ligne]. Mike. Use Afraid Custom Dynamic DNS on Asus Routers; 17 mai 2016 [visité le 19 avr 2018]. Disponible: https://www.htpcguides.com/use-afraid-custom-dynamic-dns-asus-routers/
+5. Törnqvist G. nginx Reverse Proxy on Asus Merlin [En ligne]. Göran Törnqvist Website. 2015 [visité le 19 avr 2018]. Disponible sur : http://goran.tornqvist.ws/nginx-reverse-proxy-on-asus-merlin/
 6. jeromeadmin. Firmware Asuswrt-Merlin - T[echnical] eXpertise [En ligne]. T[echnical] eXpertise. 2014 [visité le 19 avr 2018]. Disponible: http://tex.fr/firmware-asuswrt-merlin/
 7. SSL Configuration Generator [En ligne]. Fondation Mozilla. Generate Mozilla Security Recommended Web Server Configuration Files; [Visité le 23 avr 2018]. Disponible: https://mozilla.github.io/server-side-tls/ssl-config-generator/  
