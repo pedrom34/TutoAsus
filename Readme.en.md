@@ -7,7 +7,7 @@
 3. [Install Entware]()
 4. [Setup OVH DynHost on the router]()
 5. [Install nginx]()
-6. [Setup nginx]()
+6. [Set up nginx]()
 7. [Get Let's Encrypt certificate]()
 8. [Conclusion]()
 9. [Sources]()
@@ -122,3 +122,34 @@ Then we apply and restart.
 Tada! We have a domain name that points to the ip of our router! Even if your IP address changes!  
   
 Note that the ddns-start script considers by default that the router is, like mine, double Nated behind an ISP box. If this is not the case, adapt the script by adding "#" before "IP=$(wget..." to line 29 of the script.
+
+## 5. Install nginx
+Now that everything is set, we can install nginx.  
+```shell
+opkg install nginx-extras
+```
+Why nginx-extras instead of nginx? Because nginx doesn't include some interesting modules for https security.
+  
+We add rules in the firewall so that nginx can listen to ports 80 and 443:  
+```shell
+vi /jffs/scripts/firewall-start
+```
+Copy-paste those rules in the script (and as before, to exit vi, press Esc, then "ZZ"):  
+```bash
+#!/bin/sh
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+```
+Add a line in services-start so that nginx starts with the router:  
+```shell
+vi /jffs/scripts/services-start
+```
+```shell
+/opt/etc/init.d/S80nginx start
+```
+Make the scripts executable:  
+```shell
+chmod a+x /jffs/scripts/*
+```
+  
+## 6. Set up nginx  
