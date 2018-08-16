@@ -1,5 +1,7 @@
 # Install a SSL reverse proxy on an Asus Router with OVH domain
 
+Lire dans une autre langue : [Français 🇫🇷](README.md), [English 🇬🇧](README.en.md).  
+
 ## Menu
 0. [What? Why?]()
 1. [Install Merlin on the router]()
