@@ -3,16 +3,16 @@
 Lire dans une autre langue : [Français 🇫🇷](README.md), [English 🇬🇧](Readme.en.md).  
 
 ## Menu
-0. [What? Why?]()
-1. [Install Merlin on the router]()
-2. [Activate SSH and JFFS partition]()
-3. [Install Entware]()
-4. [Setup OVH DynHost on the router]()
-5. [Install nginx]()
-6. [Set up nginx]()
-7. [Get Let's Encrypt certificate]()
-8. [Conclusion]()
-9. [Sources]()
+0. [What? Why?](#0-what-why)
+1. [Install Merlin on the router](#1-install-merlin-on-the-router)
+2. [Activate SSH and JFFS partition](#2-activate-ssh-et-jffs-partition)
+3. [Install Entware](#3-install-entware)
+4. [Setup OVH DynHost on the router](#4-using-ovh-dynhost-on-your-router)
+5. [Install nginx](#5-install-nginx)
+6. [Set up nginx](#6-set-up-nginx)
+7. [Get Let's Encrypt certificate](#7-get-lets-encrypt-certificate)
+8. [Conclusion](#8-a-few-words-of-conclusion)
+9. [Sources](#9-on-the-shoulders-of-giants)
 
 ## 0. What? Why?
 An inverse proxy or reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access other resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
