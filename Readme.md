@@ -18,7 +18,7 @@ Lire dans une autre langue : [Français 🇫🇷](Readme.fr.md), [English 🇬�
 An inverse proxy or reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access other resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
   
 ### 0.1. What about security?
-The reverse proxy *can be* secure. One's just have to use a certificate, the connection will be encrypted between the external computer and the proxy. And with Let's Encrypt, it is possible to have a free certificate recognized by browsers and the little green padlock! In addiction, Let's Encrypt launched in 2018 the support for *wildcard* certificates: it is now possible to request a certificate for "\*.domain.com" rather than "pouet.domain.com, pouet2.domain. com, ... ".  
+The reverse proxy *can be* secrure. You just have to use a certificate, the connection will be encrypted between the external computer and the proxy. And with Let's Encrypt, it is possible to have a free certificate recognized by browsers and the little green padlock! In addition, Let's Encrypt launched in 2018 the support for *wildcard* certificates: it is now possible to request a certificate for "\*.domain.com" rather than "pouet.domain.com, pouet2.domain. com, ... ".  
   
 ### 0.2. In real terms...
 I set up this configuration because I have an Asus router - an AC86U - behind the box provided by my ISP, it is there to fill the gaps of this box: custom DNS, firewall and advanced DHCP, VPN server and client, dnsmasq, etc. And this router also allows me to run nginx - which I use as a reverse proxy - and to use a domain name rented from Ovh with my dynamic IP address (DynHost).  
@@ -47,7 +47,7 @@ As for SSH access, it will be necessary later, because most of the tutorial will
 [Entware](http://entware.net/about.html) is free software, it is a packet manager for embedded systems, like Nas or routers. It allows to add a lot of softwares normally unavailable, like the nano text editor for example. Entware's advantage in this tutorial is that it allows you to install nginx.
   
 ### 3.1. Configuring the USB flash drive
-Entware requires an EXT2 formatted USB flash drive, connected to the router's USB port. Easy if you have a computer running Linux. Less easy under Windows... The best is to use [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) if your PC is running Windows. Nothing complex: you install the application, right click on its key, delete the partition or partitions already present. Right-click and create an EXT2 partition of at least 2GB. Click ok, and apply.  
+Entware requires an EXT2 formatted USB flash drive, connected to the router's USB port. Easy with Linux, less with Windows... The best is to use [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) if your PC is running Windows. Nothing complex: install the application, right click on the USB key, delete the partition or partitions already present. Right-click and create an EXT2 partition of at least 2GB. Click ok, and apply.  
 
 ### 3.2 Installation of entware
 The key plugged in, we connect in SSH to the router with PuTTY, and type:
@@ -66,8 +66,7 @@ The terminal will show:
 [1] --> /tmp/mnt/sda1
  =>  Please enter partition number or 0 to exit
 ```
-We choose the partition by typing the corresponding digit, and hop. It's over.
-
+We choose the partition by typing the corresponding digit, and hop. It's over.  
 ## 4. Using Ovh DynHost on your router
 As indicated in the introduction, I have an Ovh domain name, and I want to access the different services I host at home, via this address. Problem, I don't have a static ip: if I link pouet.fr to my ip address, at the first ip change, the address will no longer point to my home. So I will create records at Ovh and use my router to update the linked ip address. To do this, you have to do a manipulation at Ovh, and create a script on the router.  
   
@@ -82,7 +81,7 @@ Back in the Dynhost window, we click on add a Dynhost :four: and we add current 
   
 >![Dynhost Ovh, création des accès](https://i.imgur.com/AsdDX9m.png)  
   
-Finally, last step, we will create as many redirections as there are services you want to access. For that, we go in redirection, and we create a CNAME redirection to the domain dynhost:
+Finally, last step, we will create as many redirections as there are services you want to access. For that, we go in redirection, and we create a CNAME redirection to the dynhost domain:
 >![Redirections Ovh 1](https://i.imgur.com/ILhgyAd.png)
   
 >![Redirections Ovh 2](https://i.imgur.com/Umkr7iA.png)
@@ -91,7 +90,7 @@ Finally, last step, we will create as many redirections as there are services yo
   
 >![Redirections Ovh 4](https://i.imgur.com/Unx2Kjl.png)
   
-It is also possible to create a wildcard redirect. Just delete the existing CNAME redirections if there are any, then add a CNAME entry in the DNS zone from \*.pouet.fr to pouet.fr  
+It is also possible to create a wildcard redirect. Just delete the existing CNAME redirections if there are any, and then add a CNAME entry in the DNS zone from \*.pouet.fr to pouet.fr  
   
 >![Redirection Ovh 5](https://i.imgur.com/0II2GZY.png)  
 
@@ -106,7 +105,7 @@ Then we edit the downloaded script.
 ```shell
 vi /jffs/scripts/ddns-start
 ``` 
-We update the identification information of the DynHost Ovh (user & password) that we created in step [4.1.](#41-côté-ovh), as well as the domain (pouet.fr). In vi, simply type "i" to insert text at the cursor position. 
+We update the identification information of the DynHost Ovh (user & password) that we created in step [4.1.](#41-ovh-side), as well as the domain (pouet.fr). In vi, simply type "i" to insert text at the cursor position. 
 ```bash
 U=user
 P=password
@@ -155,7 +154,7 @@ chmod a+x /jffs/scripts/*
 ```
   
 ## 6. Set up nginx  
-Without doubt the most tricky part because the configuration of nginx depends very much on the services you want to access... In any case, it is necessary to modify the current configuration in "/opt/etc/nginx/nginx.conf". So, with vi:  
+Without doubt the trickiest part because the configuration of nginx depends very much on the services you want to access... In any case, it is necessary to modify the current configuration in "/opt/etc/nginx/nginx.conf". So, with vi:  
 ```shell
 vi /opt/etc/nginx/nginx.conf
 ```
@@ -346,7 +345,7 @@ export OVH_AK="Ovh Application Key"
 export OVH_AS="Ovh Application Secret"
 ```
   
-Then, generate the certificate, here, we can see that I request a wildcard certificate \*.domain.tld* as well as for the root domain (domain.tld).
+Then, generate the certificate. Here, we can see that I request a wildcard certificate \*.domain.tld* as well as for the root domain (domain.tld).
 ```shell
 ./acme.sh --home "/jffs/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
@@ -370,7 +369,7 @@ Then do it again, this time it will work:
 ./acme.sh --home "/jffs/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
-Instal the script in nginx.
+Install the script in nginx.
 ```shell
 ./acme.sh --home "/jffs/scripts/acme.sh" --install-cert -d *.domain.tld -d domain.tld \
 --key-file       /opt/etc/nginx/cert.key  \
@@ -420,4 +419,4 @@ Not being a computer specialist or network administrator, if I could do all this
 4. HTPC Guides [Internet]. Mike. Use Afraid Custom Dynamic DNS on Asus Routers; 17-05-2016 [accessed on 19-04-2018]. Available on: https://www.htpcguides.com/use-afraid-custom-dynamic-dns-asus-routers/
 5. Törnqvist G. Nginx Reverse Proxy on Asus Merlin [Internet]. Göran Törnqvist Website. 2015 [accessed on 19-04-2018]. Available on: http://goran.tornqvist.ws/nginx-reverse-proxy-on-asus-merlin/
 6. jeromeadmin. Firmware Asuswrt-Merlin - T[echnical] eXpertise [Internet]. T[echnical] eXpertise. 2014 [accessed on 19 avr 2018]. Available on: http://tex.fr/firmware-asuswrt-merlin/
-7. SSL Configuration Generator [Internet]. Mozilla Foundatation. Generate Mozilla Security Recommended Web Server Configuration Files; [accessed on 23 avr 2018]. Available on: https://mozilla.github.io/server-side-tls/ssl-config-generator/ 
+7. SSL Configuration Generator [Internet]. Mozilla Foundation. Generate Mozilla Security Recommended Web Server Configuration Files; [accessed on 23-04-2018]. Available on: https://mozilla.github.io/server-side-tls/ssl-config-generator/
