@@ -67,16 +67,17 @@ The terminal will show:
  =>  Please enter partition number or 0 to exit
 ```
 We choose the partition by typing the corresponding digit, and hop. It's over.  
+  
 ## 4. Using Ovh DynHost on your router
-As indicated in the introduction, I have an Ovh domain name, and I want to access the different services I host at home, via this address. Problem, I don't have a static ip: if I link pouet.fr to my ip address, at the first ip change, the address will no longer point to my home. So I will create records at Ovh and use my router to update the linked ip address. To do this, you have to do a manipulation at Ovh, and create a script on the router.  
+As indicated in the introduction, I have an Ovh domain name, and I want to access the different services I host at home, via this address. Problem, I don't have a static ip: if I link pouet.fr to my ip address, at the first ip change, the address will no longer point to my home. So I will create records at Ovh and use my router to update the linked ip address. To do this, you have to do a manipulation on Ovh admin console, and create a script on the router that will run periodically to update the IP address.  
   
 ### 4.1. Ovh side
-In the Ovh client area, go to the domain you want to use, and click on DynHost :one: , then on manage accesses :two:. In the window that opens, you create an access :three:  
+In the Ovh admin console, go to the domain you want to use, and click on DynHost :one: , then on manage accesses :two:. In the window that opens, you create an access :three:  
 - The suffix will be the identifier that we will use in the script: put what you want.  
-- The subdomain is used to indicate the extent to which the ip address will be updated. Personally, I use "\*".  
+- The subdomain is used to indicate the extent to which the ip address will be updated.
 - And finally, a password of your choice that will be used for the script.  
   
-Back in the Dynhost window, we click on add a Dynhost :four: and we add current public ip (found on http://myip.dnsomatic.com/ for example). For the subdomain, I personally put nothing, but there is no obligation to do like me.
+Back in the Dynhost window, we click on 'add a Dynhost' :four: and we add current public ip (found on http://myip.dnsomatic.com/ for example). For the subdomain, I put nothing, but there is no obligation to do like me.
 >![Dynhost Ovh, sous domaines](https://i.imgur.com/snYImlC.png)  
   
 >![Dynhost Ovh, création des accès](https://i.imgur.com/AsdDX9m.png)  
