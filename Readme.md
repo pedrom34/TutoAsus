@@ -15,13 +15,13 @@ Lire dans une autre langue : [Français 🇫🇷](Readme.fr.md), [English 🇬�
 9. [Sources](#9-on-the-shoulders-of-giants)
 
 ## 0. What? Why?
-An inverse proxy or reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access other resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
+A reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy really is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
   
 ### 0.1. What about security?
 The reverse proxy *can be* secrure. You just have to use a certificate, the connection will be encrypted between the external computer and the proxy. And with Let's Encrypt, it is possible to have a free certificate recognized by browsers and the little green padlock! In addition, Let's Encrypt launched in 2018 the support for *wildcard* certificates: it is now possible to request a certificate for "\*.domain.com" rather than "pouet.domain.com, pouet2.domain. com, ... ".  
   
 ### 0.2. In real terms...
-I set up this configuration because I have an Asus router - an AC86U - behind the box provided by my ISP, it is there to fill the gaps of this box: custom DNS, firewall and advanced DHCP, VPN server and client, dnsmasq, etc. And this router also allows me to run nginx - which I use as a reverse proxy - and to use a domain name rented from Ovh with my dynamic IP address (DynHost).  
+I set up this configuration because I have an Asus router - an AC86U - behind the box provided by my ISP, it is there to fill the gaps of this box: custom DNS, firewall and advanced DHCP, VPN server and client, dnsmasq, etc. And this router also allows me to run nginx - which I use as a reverse proxy - and to use my Ovh domain with my dynamic IP address (DynHost).  
   
 I originally did this markdown file to remember what I had done. So why not share?
   
