@@ -18,16 +18,18 @@ Lire dans une autre langue : [Français 🇫🇷](Readme.fr.md), [English 🇬�
 A reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy really is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
   
 ### 0.1. What about security?
-The reverse proxy *can be* secrure. You just have to use a certificate, the connection will be encrypted between the external computer and the proxy. And with Let's Encrypt, it is possible to have a free certificate recognized by browsers and the little green padlock! In addition, Let's Encrypt launched in 2018 the support for *wildcard* certificates: it is now possible to request a certificate for "\*.domain.com" rather than "pouet.domain.com, pouet2.domain. com, ... ".  
+The reverse proxy *can be* secrure. You just have to use a certificate, the connection will be encrypted between the external computer and the proxy. And with Let's Encrypt, it is possible to have a free certificate recognized by browsers and the little green padlock! In addition, Let's Encrypt launched in 2018 the support for *wildcard* certificates: it is now possible to request a certificate for "\*.domain.com" rather than "pouet.domain.com, pouet2.domain. com, ... ". Last, you can also add authentication for interfaces that doesn't natively provide it.
   
 ### 0.2. In real terms...
-I set up this configuration because I have an Asus router - an AC86U - behind the box provided by my ISP, it is there to fill the gaps of this box: custom DNS, firewall and advanced DHCP, VPN server and client, dnsmasq, etc. And this router also allows me to run nginx - which I use as a reverse proxy - and to use my Ovh domain with my dynamic IP address (DynHost).  
+I set up this configuration because I have an Asus router - AC86U - behind the box provided by my ISP, it is there to fill the gaps of this box: custom DNS, firewall and advanced DHCP, VPN server and client, dnsmasq, etc. And this router also allows me to run nginx - which I use as a reverse proxy - and to use my Ovh domain with my dynamic IP address (DynHost).  
   
 I originally did this markdown file to remember what I had done. So why not share?
   
 ## 1. Install Merlin on the router
+<a href="https://asuswrt.lostrealm.ca/" target="_blank"><img src="https://dpfpic.com/data/medias/Box/Asuswrt-Merlin.png" width="250"></a>  
 The Merlin firmware is a modification of the official Asus firmware. It has the advantage of offering many improvements without removing Asus pleasant graphical interface. It also allows Entware to be used - I'll come back to this a little later.  
 Installing Merlin is very simple, just download the firmware from https://asuswrt.lostrealm.ca/download, and flash the file from Administration > Firmware Upgrade.  
+  
 There is no real risk in using Merlin, as it is very easy to go back, and reinstall the official firmware.  
   
 ## 2. Activate SSH et JFFS partition
@@ -37,7 +39,7 @@ Once the router is running Merlin, go to Administration > System, and activate t
 Still on the same page, enable SSH access by selecting "LAN Only", the interface will pass in https on port 8443 automatically:  
 >![Interface routeur, activation SSH et GUI en https 8443](https://i.imgur.com/nq3UtuH.png)  
   
-JFFS is a writeable partition of the router's flash memory, which will allow you to store small files (such as scripts) without the need to have a USB disk connected. This space will survive a reboot. It will also be available quite early on boot (before USB disks). In short, this partition is necessary for what we want to do.  
+JFFS is a writeable partition of the router's flash memory, which will allow you to store small files (such as scripts) without the need to have an USB disk connected. This partition will survive a reboot. It will also be available quite early on boot (before USB disks). In short, this partition is necessary for what we want to do.  
   
 The router's graphical interface, reached with address 192.168.1.1, uses port 80 by default. Except that our reverse proxy will need ports 80 and 443, so we move the GUI to port 8443. The router will be accessible via https://192.168.1.1:8443, freeing ports 80 and 443.  
   
