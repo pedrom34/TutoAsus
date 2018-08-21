@@ -46,7 +46,7 @@ The router's graphical interface, reached with address 192.168.1.1, uses port 80
 As for SSH access, it will be necessary later, because most of the tutorial will use a terminal and command lines. I personally use [PuTTY](https://www.putty.org/) with Windows.  
   
 ## 3 Install Entware
-<a href="http://entware.net/about.html" target="_blank"><img src="https://avatars3.githubusercontent.com/u/6337854?s=200&v=4" width="193"></a>  
+<a href="http://entware.net/about.html" target="_blank"><img src="https://avatars3.githubusercontent.com/u/6337854?s=200&v=4" width="165"></a>  
 [Entware](http://entware.net/about.html) is free software, it is a packet manager for embedded systems, like Nas or routers. It allows to add a lot of softwares normally unavailable, like the nano text editor for example. Entware's advantage in this tutorial is that it allows you to install nginx.
   
 ### 3.1. Configuring the USB flash drive
