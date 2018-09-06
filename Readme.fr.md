@@ -374,7 +374,7 @@ Ensuite, on recommence, cette fois, ça doit fonctionner :
   
 On installe le script dans nginx.
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --install-cert -d *.domain.tld -d domain.tld \
+./acme.sh --home "/jffs/scripts/acme.sh" --install-cert -d domain.tld \
 --key-file       /opt/etc/nginx/cert.key  \
 --fullchain-file /opt/etc/nginx/cert.crt \
 --reloadcmd     "/opt/etc/init.d/S80nginx reload"
