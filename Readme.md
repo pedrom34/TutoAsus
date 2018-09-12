@@ -13,6 +13,7 @@ Lire dans une autre langue : [Français 🇫🇷](Readme.fr.md), [English 🇬�
 7. [Get Let's Encrypt certificate](#7-get-lets-encrypt-certificate)
 8. [Conclusion](#8-a-few-words-of-conclusion)
 9. [Sources](#9-on-the-shoulders-of-giants)
+10. [Bonuses](#10-bonuses)
 
 ## 0. What? Why?
 A reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy really is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
@@ -72,6 +73,7 @@ The terminal will show:
 We choose the partition by typing the corresponding digit, and hop. It's over.  
   
 ## 4. Using Ovh DynHost on your router
+<a href="https://www.ovh.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Logo-OVH.svg/256px-Logo-OVH.svg.png"></a>  
 As indicated in the introduction, I have an Ovh domain name, and I want to access the different services I host at home, via this address. Problem, I don't have a static ip: if I link pouet.fr to my ip address, at the first ip change, the address will no longer point to my home. So I will create records at Ovh and use my router to update the linked ip address. To do this, you have to do a manipulation on Ovh admin console, and create a script on the router that will run periodically to update the IP address.  
   
 ### 4.1. Ovh side
@@ -129,6 +131,8 @@ Tada! We have a domain name that points to the ip of our router! Even if your IP
 Note that the ddns-start script considers by default that the router is, like mine, double Nated behind an ISP box. If this is not the case, adapt the script by adding "#" before "IP=$(wget..." to line 29 of the script.
 
 ## 5. Install nginx
+<a href="https://nginx.org/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/256px-Nginx_logo.svg.png"></a>  
+  
 Now that everything is set, we can install nginx.  
 ```shell
 opkg install nginx-extras
@@ -305,6 +309,8 @@ server {
 ```
   
 ## 7. Get Let's Encrypt certificate
+<a href="https://letsencrypt.org/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Let's_Encrypt.svg/256px-Let's_Encrypt.svg.png"></a>  
+  
 There are many ways to get a free Let's Encrypt certificate. For routers, I find that the most suitable method is to use the [acme.sh](https://acme.sh) script.  
 This script is amazing: it adapts to a lot of situations thanks to its many options, and is very light!  
 On the following part, I use the script with my domain name, via the Ovh API. If you are not in this situation, refer to the [acme.sh](https://wiki.acme.sh) wiki.  
@@ -414,56 +420,16 @@ If the configuration file is modified, the configuration can be reloaded without
 nginx -s reload
 ```  
   
-### 8.1. 2018-09-11 bonus: two (or more) DynDNS domains
-Some months after I wrote this tutorial, I needed to add another DynDNS domain to my router. With a quick search, I found that the best solution for me was to use [DNS-O-Matic](https://www.dnsomatic.com/). To make this work, simply add your DynDNS providers in the web interface, and modify the script given in [point 4.2.](#42-router-side) with this command:  
-  
-```shell
-vi /jffs/scripts/ddns-start
-```
-  
-Replace every line by:  
-```shell
-#!/bin/sh
-# Update the following variables:
-USERNAME=dnsomatic_username
-PASSWORD=dnsomatic_password
-HOSTNAME=all.dnsomatic.com
-
-# Should be no need to modify anything beyond this point
-/usr/sbin/curl -k --silent -u "$USERNAME:$PASSWORD" "https://updates.dnsomatic.com/nic/update?hostname=$HOSTNAME&wildcard=NOCHG&mx=NOCHG&backmx=NOCHG&myip=" > /dev/null
-if [ $? -eq 0 ]; then
-  /sbin/ddns_custom_updated 1
-else
-  /sbin/ddns_custom_updated 0
-fi
-```
-  
-Now, to get the certificate with this particular situation, you just have to modify the acme.sh commands like this:  
-- Issue the cert:  
-```shell
-./acme.sh  --home "/jffs/scripts/acme.sh" --issue  \
--d domain1.ovh  --dns dns_ovh \
--d *.domain1.ovh  --dns dns_ovh \
--d domain2.duckdns.org  --dns dns_duckdns  \
--d *.domain2.duckdns.org --dns dns_duckdns
-```
-  
-- Install the cert in nginx:  
-```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --install-cert \
--d domain1.ovh -d domain2.duckdns.org \
---key-file  /opt/etc/nginx/cert.key \
---fullchain-file  /opt/etc/nginx/cert.crt \
---reloadcmd "nginx -s reload"
-```
-  
 ## 9. On the shoulders of giants  
 Not being a computer specialist or network administrator, if I could do all this, [it's by standing on the shoulders of giants](https://en.wikipedia.org/wiki/Standing_on_the_shoulders_of_giants). Do not hesitate to consult these sites which helped me a lot, to adapt this modest tutorial to your environment:  
   
-  1. Sauvageau E. asuswrt-merlin: Enhanced version of Asus’s router firmware (Asuswrt) - Wiki [Internet]. 2018 [accessed on 19-04-2018]. Available on: https://github.com/RMerl/asuswrt-merlin/wiki
+1. Sauvageau E. asuswrt-merlin: Enhanced version of Asus’s router firmware (Asuswrt) - Wiki [Internet]. 2018 [accessed on 19-04-2018]. Available on: https://github.com/RMerl/asuswrt-merlin/wiki
 2. Neilpang. acme.sh: A pure Unix shell script implementing ACME client protocol - Wiki [Internet]. 2018 [accessed on 19-042018]. Available on: https://github.com/Neilpang/acme.sh/wiki
 3. Xuplus. 搞定Merlin使用DNS实现Let’s Encrpt证书，使用SSL安全访问后台 - 梅林 - KoolShare - 源于玩家 服务玩家 [Internet]. Koolshare. 2016 [accessed on 19-04-2018]. Available on: http://koolshare.cn/thread-79146-1-1.html
 4. HTPC Guides [Internet]. Mike. Use Afraid Custom Dynamic DNS on Asus Routers; 17-05-2016 [accessed on 19-04-2018]. Available on: https://www.htpcguides.com/use-afraid-custom-dynamic-dns-asus-routers/
 5. Törnqvist G. Nginx Reverse Proxy on Asus Merlin [Internet]. Göran Törnqvist Website. 2015 [accessed on 19-04-2018]. Available on: http://goran.tornqvist.ws/nginx-reverse-proxy-on-asus-merlin/
 6. jeromeadmin. Firmware Asuswrt-Merlin - T[echnical] eXpertise [Internet]. T[echnical] eXpertise. 2014 [accessed on 19-04-2018]. Available on: http://tex.fr/firmware-asuswrt-merlin/
 7. SSL Configuration Generator [Internet]. Mozilla Foundation. Generate Mozilla Security Recommended Web Server Configuration Files; [accessed on 23-04-2018]. Available on: https://mozilla.github.io/server-side-tls/ssl-config-generator/
+  
+## 10. Bonuses
+- 2018-09-11: Use more than one DynDNS: [English 🇬🇧](Bonus/20180911-bonusEn.md), [Français 🇫🇷](Bonus/20180911-bonusFr.md)
