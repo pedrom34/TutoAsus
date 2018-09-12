@@ -429,3 +429,6 @@ Not being a computer specialist or network administrator, if I could do all this
 5. Törnqvist G. Nginx Reverse Proxy on Asus Merlin [Internet]. Göran Törnqvist Website. 2015 [accessed on 19-04-2018]. Available on: http://goran.tornqvist.ws/nginx-reverse-proxy-on-asus-merlin/
 6. jeromeadmin. Firmware Asuswrt-Merlin - T[echnical] eXpertise [Internet]. T[echnical] eXpertise. 2014 [accessed on 19-04-2018]. Available on: http://tex.fr/firmware-asuswrt-merlin/
 7. SSL Configuration Generator [Internet]. Mozilla Foundation. Generate Mozilla Security Recommended Web Server Configuration Files; [accessed on 23-04-2018]. Available on: https://mozilla.github.io/server-side-tls/ssl-config-generator/
+  
+## 10. Bonus
+- 2018-09-11 : utiliser plus d'un DynDNS: [Français 🇫🇷](20180911-bonusFr.md), [English 🇬🇧](20180911-bonusEn.md)
