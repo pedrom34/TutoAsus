@@ -12,7 +12,7 @@ Read in another language: [English 🇬🇧](Readme.md), [Français 🇫🇷](Re
 6. [Configurer nginx](#6-configurer-nginx)
 7. [Obtenir un certificat Let's Encrypt](#7-obtenir-un-certificat-lets-encrypt)
 8. [Conclusion](#8-quelques-mots-en-conclusion)
-9. [Sources](#sur-les-épaules-des-géants-)
+9. [Sources](#9-sur-les-épaules-des-géants)
 10. [Bonus](#10-bonus)
 
 ## 0. Quoi ? Pourquoi ?
