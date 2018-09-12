@@ -423,7 +423,7 @@ nginx -s reload
 ## 9. On the shoulders of giants  
 Not being a computer specialist or network administrator, if I could do all this, [it's by standing on the shoulders of giants](https://en.wikipedia.org/wiki/Standing_on_the_shoulders_of_giants). Do not hesitate to consult these sites which helped me a lot, to adapt this modest tutorial to your environment:  
   
-  1. Sauvageau E. asuswrt-merlin: Enhanced version of Asus’s router firmware (Asuswrt) - Wiki [Internet]. 2018 [accessed on 19-04-2018]. Available on: https://github.com/RMerl/asuswrt-merlin/wiki
+1. Sauvageau E. asuswrt-merlin: Enhanced version of Asus’s router firmware (Asuswrt) - Wiki [Internet]. 2018 [accessed on 19-04-2018]. Available on: https://github.com/RMerl/asuswrt-merlin/wiki
 2. Neilpang. acme.sh: A pure Unix shell script implementing ACME client protocol - Wiki [Internet]. 2018 [accessed on 19-042018]. Available on: https://github.com/Neilpang/acme.sh/wiki
 3. Xuplus. 搞定Merlin使用DNS实现Let’s Encrpt证书，使用SSL安全访问后台 - 梅林 - KoolShare - 源于玩家 服务玩家 [Internet]. Koolshare. 2016 [accessed on 19-04-2018]. Available on: http://koolshare.cn/thread-79146-1-1.html
 4. HTPC Guides [Internet]. Mike. Use Afraid Custom Dynamic DNS on Asus Routers; 17-05-2016 [accessed on 19-04-2018]. Available on: https://www.htpcguides.com/use-afraid-custom-dynamic-dns-asus-routers/
@@ -432,4 +432,4 @@ Not being a computer specialist or network administrator, if I could do all this
 7. SSL Configuration Generator [Internet]. Mozilla Foundation. Generate Mozilla Security Recommended Web Server Configuration Files; [accessed on 23-04-2018]. Available on: https://mozilla.github.io/server-side-tls/ssl-config-generator/
   
 ## 10. Bonuses
-- 2018-09-11: Use more than one DynDNS: [English 🇬🇧](Bonus\20180911-bonusEn.md), [Français 🇫🇷](Bonus\20180911-bonusFr.md)
+- 2018-09-11: Use more than one DynDNS: [English 🇬🇧](Bonus/20180911-bonusEn.md), [Français 🇫🇷](Bonus/20180911-bonusFr.md)
