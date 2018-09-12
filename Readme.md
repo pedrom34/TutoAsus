@@ -13,6 +13,7 @@ Lire dans une autre langue : [Français 🇫🇷](Readme.fr.md), [English 🇬�
 7. [Get Let's Encrypt certificate](#7-get-lets-encrypt-certificate)
 8. [Conclusion](#8-a-few-words-of-conclusion)
 9. [Sources](#9-on-the-shoulders-of-giants)
+10. [Bonuses](#10-bonuses)
 
 ## 0. What? Why?
 A reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy really is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
@@ -430,5 +431,5 @@ Not being a computer specialist or network administrator, if I could do all this
 6. jeromeadmin. Firmware Asuswrt-Merlin - T[echnical] eXpertise [Internet]. T[echnical] eXpertise. 2014 [accessed on 19-04-2018]. Available on: http://tex.fr/firmware-asuswrt-merlin/
 7. SSL Configuration Generator [Internet]. Mozilla Foundation. Generate Mozilla Security Recommended Web Server Configuration Files; [accessed on 23-04-2018]. Available on: https://mozilla.github.io/server-side-tls/ssl-config-generator/
   
-## 10. Bonus
-- 2018-09-11 : utiliser plus d'un DynDNS: [Français 🇫🇷](20180911-bonusFr.md), [English 🇬🇧](20180911-bonusEn.md)
+## 10. Bonuses
+-2018-09-11: Use more than one DynDNS: [English 🇬🇧](20180911-bonusEn.md), [Français 🇫🇷](20180911-bonusFr.md)
