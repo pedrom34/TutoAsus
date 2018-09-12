@@ -71,6 +71,7 @@ Le terminal va afficher :
 On choisit la partition en tapant le chiffre correspondant, et hop. C'est fini.  
 
 ## 4. Utiliser le DynHost d'Ovh sur son routeur
+<a href="https://www.ovh.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Logo-OVH.svg/256px-Logo-OVH.svg.png"></a>  
 Comme indiqué en introduction, je possède un nom de domaine Ovh, et je souhaite accéder aux différents services que j'héberge chez moi, via cette adresse. Problème, je n'ai pas une ip fixe : si je lie pouet.fr à mon adresse ip, au premier changement d'ip, l'adresse ne pointera plus chez moi. Je vais donc créer des enregistrements chez Ovh et utiliser mon routeur pour mettre à jour l'adresse ip liée. Pour cela, il faut faire une manipulation chez Ovh, et créer un script sur le routeur.  
   
 ### 4.1. Côté Ovh
@@ -128,6 +129,8 @@ Tada ! Nous avons un nom de domaine qui pointe sur l'ip de notre routeur ! Et ce
 A noter que le script ddns-start considère par défaut que le routeur est, comme le mien, en double Nat derrière une box. Si ça n'est pas le cas, adaptez le script en rajoutant "#" devant "IP=$(wget..." à la ligne 29 du script.
 
 ## 5. Installer nginx
+<a href="https://nginx.org/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/256px-Nginx_logo.svg.png"></a>  
+  
 Bon, maintenant que tout est bon, on installe nginx.  
 ```shell
 opkg install nginx-extras
@@ -309,6 +312,8 @@ Ce script est fabuleux : il s'adapte à énormément de situations grâce à ses
 Sur la partie qui suit, j'utilise le script avec mon nom de domaine, via l'API d'Ovh. Si vous n'êtes pas dans cette situation, référez-vous au wiki de [acme.sh](https://wiki.acme.sh).  
 
 ### 7.1. Installation du script
+<a href="https://letsencrypt.org/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Let's_Encrypt.svg/256px-Let's_Encrypt.svg.png"></a>  
+  
 Alors, on commence par télécharger Acme.sh
 ```shell
 wget https://github.com/Neilpang/acme.sh/archive/master.zip
@@ -412,50 +417,7 @@ En cas de modification du fichier de configuration on recharge la configuration,
 ```shell
 nginx -s reload
 ```
-  
-### 8.1. 2018-09-11 bonus: deux domaines DynDNS (ou plus)
-Quelques mois après avoir écrit ce tuto, j'ai eu besoin de faire pointer deux domaines DynDNS vers mon routeur. Après une recherche rapide, je me suis rendu compte que la meilleure solution pour moi consistait à utiliser [DNS-O-Matic](https://www.dnsomatic.com/). Pour que cela fonctionne, il suffit d'ajouter les fournisseurs DynDNS dans l'interface web, et de modifier le script indiqué au [point 4.2.](42-côté-routeur) avec cette commande :  
-  
-```shell
-vi /jffs/scripts/ddns-start
-```
-  
-Et remplacer les lignes présentes par :  
-```shell
-#!/bin/sh
-# mettre à jour les variables suivantes:
-USERNAME=dnsomatic_username
-PASSWORD=dnsomatic_password
-HOSTNAME=all.dnsomatic.com
 
-# pas besoin de modifier quoi que ce soit ici :
-/usr/sbin/curl -k --silent -u "$USERNAME:$PASSWORD" "https://updates.dnsomatic.com/nic/update?hostname=$HOSTNAME&wildcard=NOCHG&mx=NOCHG&backmx=NOCHG&myip=" > /dev/null
-if [ $? -eq 0 ]; then
-  /sbin/ddns_custom_updated 1
-else
-  /sbin/ddns_custom_updated 0
-fi
-```
-  
-Maintenant, pour générer un certificat, il faut modifier les commandes du script acme.sh comme ceci :
-- Générer le certificat :
-```shell
-./acme.sh  --home "/jffs/scripts/acme.sh" --issue  \
--d domain1.ovh  --dns dns_ovh \
--d *.domain1.ovh  --dns dns_ovh \
--d domain2.duckdns.org  --dns dns_duckdns  \
--d *.domain2.duckdns.org --dns dns_duckdns
-```
-  
-- Installer le certificat dans nginx :
-```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --install-cert \
--d domain1.ovh -d domain2.duckdns.org \
---key-file  /opt/etc/nginx/cert.key \
---fullchain-file  /opt/etc/nginx/cert.crt \
---reloadcmd "nginx -s reload"
-```
-  
 ## 9. Sur les épaules des géants
 N'étant pas informaticien ou administrateur réseau, si j'ai pu faire tout cela, [c'est en montant sur les épaules des géants](https://fr.wikipedia.org/wiki/Des_nains_sur_des_%C3%A9paules_de_g%C3%A9ants). N'hésitez pas à consulter ces sites qui m'ont énormément aidé, pour adapter ce modeste tuto à votre situation :  
   
@@ -466,3 +428,7 @@ N'étant pas informaticien ou administrateur réseau, si j'ai pu faire tout cela
 5. Törnqvist G. nginx Reverse Proxy on Asus Merlin [En ligne]. Göran Törnqvist Website. 2015 [visité le 19 avr 2018]. Disponible sur : http://goran.tornqvist.ws/nginx-reverse-proxy-on-asus-merlin/
 6. jeromeadmin. Firmware Asuswrt-Merlin - T[echnical] eXpertise [En ligne]. T[echnical] eXpertise. 2014 [visité le 19 avr 2018]. Disponible: http://tex.fr/firmware-asuswrt-merlin/
 7. SSL Configuration Generator [En ligne]. Fondation Mozilla. Generate Mozilla Security Recommended Web Server Configuration Files; [Visité le 23 avr 2018]. Disponible: https://mozilla.github.io/server-side-tls/ssl-config-generator/  
+
+## 10. Bonus
+- 2018-09-11 : utiliser plus d'un DynDNS: [Français 🇫🇷](20180911-bonusFr.md), [English 🇬🇧](20180911-bonusEn.md)
+  
