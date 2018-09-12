@@ -13,6 +13,7 @@ Read in another language: [English 🇬🇧](Readme.md), [Français 🇫🇷](Re
 7. [Obtenir un certificat Let's Encrypt](#7-obtenir-un-certificat-lets-encrypt)
 8. [Conclusion](#8-quelques-mots-en-conclusion)
 9. [Sources](#sur-les-épaules-des-géants-)
+10. [Bonus](#10-bonus)
 
 ## 0. Quoi ? Pourquoi ?
 Un reverse proxy ou proxy inverse est un petit serveur web qui permet d'accéder aux interfaces utilisateur situées derrière lui, par exemple : interfaces web de caméras, serveurs multimédia, Nas, calendrier ou email auto-hébergées, etc. Le but est de pouvoir accéder aux différentes ressources depuis l'extérieur, sans avoir à utiliser un VPN. VPN et reverse proxy ne s'excluent pas pour autant, le proxy n'étant vraiment utile que pour les interfaces web. De plus, le VPN permet une sécurité accrue, lors de l'utilisation de wifi gratuits par exemple.  
