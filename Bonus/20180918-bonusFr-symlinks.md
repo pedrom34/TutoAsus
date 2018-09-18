@@ -1,7 +1,7 @@
 # Bonus : configuration de nginx avec des liens symboliques  
   
 Afin que la configuration de nginx soit plus facile, rapide et modulable, je vous recommande de créer un fichier de configuration par sous-domaines. Ces fichiers devront être mis dans le dossier */opt/etc/nginx/sites-enabled* pour être actifs.  
-Cependant, c'est encore mieux de positionner les fichiers dans le dossier */opt/etc/nginx/sites-available* et de créer un lien symbolique pour activer le site.  
+Cependant, c'est encore mieux de positionner les fichiers dans le dossier */opt/etc/nginx/sites-available* et de créer un lien symbolique pour activer le sous-domaine.  
   
 Si on reprend l'exemple d'un sous-domaine pointant vers l'interface web d'une box sous Kodi ([point 6.1](https://github.com/pedrom34/TutoAsus/blob/master/Readme.fr.md#61-exemple-de-configuration)) :  
 On crée le fichier de configuration :
