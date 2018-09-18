@@ -18,7 +18,7 @@ server {
 ```
 Jusqu'ici, seul le dossier contenant les fichiers de configuration ont changé. La différence, c'est que pour activer la configuration, on fait simplement :
 ```shell
-ln -s /opt/etc/nginx/sites-available/kodi.domain.tld /opt/etc/nginx/sites-enabled/kodi.domain.tld.conf && nginx -s reload
+ln -s /opt/etc/nginx/sites-available/kodi.domain.tld.conf /opt/etc/nginx/sites-enabled/kodi.domain.tld.conf && nginx -s reload
 ```
 Le *nginx -s reload* permettant de recharger la configuration nginx pour prendre en compte ce nouveau fichier conf.
   
