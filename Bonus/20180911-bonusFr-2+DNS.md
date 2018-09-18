@@ -1,5 +1,6 @@
 # Bonus : deux domaines DynDNS (ou plus)  
-  
+<a href="https://www.dnsomatic.com/" target="_blank"><img src="http://www.dnsomatic.com/img/dnsomatic_logo_2000.gif" width="250"></a>  
+    
 Quelques mois après avoir écrit ce tuto, j'ai eu besoin de faire pointer deux domaines DynDNS vers mon routeur. Après une recherche rapide, je me suis rendu compte que la meilleure solution pour moi consistait à utiliser [DNS-O-Matic](https://www.dnsomatic.com/). Pour que cela fonctionne, il suffit d'ajouter les fournisseurs DynDNS dans l'interface web, et de modifier le script indiqué au [point 4.2.](https://github.com/pedrom34/TutoAsus/blob/master/Readme.fr.md#42-côté-routeur) avec cette commande :  
   
 ```shell
