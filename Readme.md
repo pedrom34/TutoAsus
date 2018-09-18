@@ -432,5 +432,5 @@ Not being a computer specialist or network administrator, if I could do all this
 7. SSL Configuration Generator [Internet]. Mozilla Foundation. Generate Mozilla Security Recommended Web Server Configuration Files; [accessed on 23-04-2018]. Available on: https://mozilla.github.io/server-side-tls/ssl-config-generator/
   
 ## 10. Bonuses
-- 2018-09-11: Use more than one DynDNS: [English 🇬🇧](Bonus/20180911-bonusEn-2+DNS.md), [Français 🇫🇷](Bonus/20180911-bonusFr-2+DNS.md)
-- 2018-09-18: Use symlink to setup nginx: [English 🇬🇧](Bonus/20180918-bonusEn-symlinks.md), [Français 🇫🇷](Bonus/20180918-bonusFr-symlinks.md)
+- 2018-09-11: use more than one DynDNS: [English 🇬🇧](Bonus/20180911-bonusEn-2+DNS.md), [Français 🇫🇷](Bonus/20180911-bonusFr-2+DNS.md)
+- 2018-09-18: setup nginx with symlinks: [English 🇬🇧](Bonus/20180918-bonusEn-symlinks.md), [Français 🇫🇷](Bonus/20180918-bonusFr-symlinks.md)
