@@ -1,4 +1,4 @@
-# Bonus: use symlink to setup nginx
+# Bonus: setup nginx with symlinks
   
 In order to make nginx's configuration easier, faster and more flexible, I recommend that you create a configuration file per subdomain. These files will need to be put in the */opt/etc/nginx/sites-enabled* folder to be active.
 However, it's even better to put the files in the */opt/etc/nginx/sites-available* folder and create symbolic links to activate the subdomains.
