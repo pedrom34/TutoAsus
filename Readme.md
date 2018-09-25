@@ -253,6 +253,7 @@ http {
         ssl_prefer_server_ciphers   on;
         ssl_stapling on;
         ssl_stapling_verify on;
+        ssl_trusted_certificate cert.crt;
         resolver 1.1.1.1 valid=60s;
         resolver_timeout 2s;
         location / {
@@ -292,6 +293,7 @@ server {
     ssl_prefer_server_ciphers   on;
     ssl_stapling on;
     ssl_stapling_verify on;
+    ssl_trusted_certificate cert.crt;
     resolver 1.1.1.1 valid=60s;
     resolver_timeout 2s;
     location / {
