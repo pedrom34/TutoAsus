@@ -37,7 +37,7 @@ There is no real risk in using Merlin, as it is very easy to go back, and reinst
 Once the router is running Merlin, go to Administration > System, and activate the JFFS partition.
 >![Interface routeur, activation de JFFS](https://i.imgur.com/ryhJJ6K.png)  
   
-Still on the same page, enable SSH access by selecting "LAN Only", the interface will pass in https on port 8443 automatically:  
+Still on the same page, enable SSH access by selecting "LAN Only", and enable HTTPS access to the interface. The port will switch from 80 to 8443 automatically:  
 >![Interface routeur, activation SSH et GUI en https 8443](https://i.imgur.com/nq3UtuH.png)  
   
 JFFS is a writeable partition of the router's flash memory, which will allow you to store small files (such as scripts) without the need to have an USB disk connected. This partition will survive a reboot. It will also be available quite early on boot (before USB disks). In short, this partition is necessary for what we want to do.  
