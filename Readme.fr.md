@@ -1,4 +1,4 @@
-# Installer un reverse proxy SSL sur un routeur Asus avec un nom de domaine Ovh
+﻿# Installer un reverse proxy SSL sur un routeur Asus avec un nom de domaine Ovh
   
 Read in another language: [English 🇬🇧](Readme.md), [Français 🇫🇷](Readme.fr.md).  
  
@@ -435,3 +435,4 @@ N'étant pas informaticien ou administrateur réseau, si j'ai pu faire tout cela
 ## 10. Bonus
 - 2018-09-11 : utiliser plus d'un DynDNS: [Français 🇫🇷](Bonus/20180911-bonusFr-2+DNS.md), [English 🇬🇧](Bonus/20180911-bonusEn-2+DNS.md)  
 - 2018-09-18 : configurer nginx avec des liens symboliques : [Français 🇫🇷](Bonus/20180918-bonusFr-symlinks.md), [English 🇬🇧](Bonus/20180918-bonusEn-symlinks.md)  
+- 2018-12-05 : utiliser logrotate pour gérer les logs nginx : [Français 🇫🇷](Bonus/20181205-bonusFr-logrotate.md), [English 🇬🇧](Bonus/20181205-bonusEn-logrotate.md)  
