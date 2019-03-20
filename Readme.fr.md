@@ -148,14 +148,43 @@ On colle ça dans le script (et comme précédemment, pour quitter vi, on fait E
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 ```
-On rajoute une ligne dans services-start pour que nginx démarre avec le routeur :  
-```shell
-vi /jffs/scripts/services-start
+  
+Chez moi, le script services-start créé par entware ne démarre pas nginx automatiquement. C'est dû au délai indiqué qui ne permet pas à la clé usb d'être montée. Alors, j'ai changé le script de ça :  
+```bash
+#!/bin/sh
+
+RC='/opt/etc/init.d/rc.unslung'
+
+i=30
+until [ -x "$RC" ] ; do
+  i=$(($i-1))
+  if [ "$i" -lt 1 ] ; then
+    logger "Could not start Entware"
+    exit
+  fi
+  sleep 1
+done
+$RC start
 ```
-```shell
-/opt/etc/init.d/S80nginx start
+À ceci :  
+```bash
+#!/bin/sh
+
+RC='/opt/etc/init.d/rc.unslung'
+
+i=60
+until [ -x "$RC" ] ; do
+  i=$(($i-1))
+  if [ "$i" -lt 1 ] ; then
+    logger "Could not start Entware"
+    exit
+  fi
+  sleep 1
+done
+$RC start
 ```
-On rend le tout exécutable :  
+  
+Enfin, on rend le tout exécutable :  
 ```shell
 chmod a+x /jffs/scripts/*
 ```

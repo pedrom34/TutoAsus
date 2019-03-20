@@ -149,14 +149,43 @@ Copy-paste those rules in the script (and as before, to exit vi, press Esc, then
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 ```
-Add a line in services-start so that nginx starts with the router:  
-```shell
-vi /jffs/scripts/services-start
+  
+In my case, the services-start script that entware creates, won't start nginx automatically. This is due to the fact that the delay is not sufficient to allow the usb key to be mounted. So I changed it from this:  
+```bash
+#!/bin/sh
+
+RC='/opt/etc/init.d/rc.unslung'
+
+i=30
+until [ -x "$RC" ] ; do
+  i=$(($i-1))
+  if [ "$i" -lt 1 ] ; then
+    logger "Could not start Entware"
+    exit
+  fi
+  sleep 1
+done
+$RC start
 ```
-```shell
-/opt/etc/init.d/S80nginx start
+To that:  
+```bash
+#!/bin/sh
+
+RC='/opt/etc/init.d/rc.unslung'
+
+i=60
+until [ -x "$RC" ] ; do
+  i=$(($i-1))
+  if [ "$i" -lt 1 ] ; then
+    logger "Could not start Entware"
+    exit
+  fi
+  sleep 1
+done
+$RC start
 ```
-Make the scripts executable:  
+  
+Then, you have to make the scripts executable:  
 ```shell
 chmod a+x /jffs/scripts/*
 ```
