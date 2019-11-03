@@ -34,8 +34,7 @@ Now, to get the certificate with this particular situation, you just have to mod
 ./acme.sh  --home "/jffs/scripts/acme.sh" --issue  \
 -d domain1.ovh  --dns dns_ovh \
 -d *.domain1.ovh  --dns dns_ovh \
--d domain2.duckdns.org  --dns dns_duckdns  \
--d *.domain2.duckdns.org --dns dns_duckdns
+-d *.domain2.duckdns.org --insecure --dns dns_duckdns
 ```
   
 - Install the cert in nginx:  

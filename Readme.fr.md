@@ -50,7 +50,7 @@ Quant à l'accès SSH, il sera nécessaire par la suite, car la quasi-totalité 
 [Entware](http://entware.net/about.html) est un logiciel libre, c'est un gestionnaire de paquets pour les systèmes embarqués, comme les Nas ou les routeurs. Cela permet d'ajouter tout un tas de logiciels normalement indisponibles, comme l'éditeur de texte nano par exemple. L'intérêt d'Entware pour ce tuto, c'est qu'il permet d'installer nginx.
   
 ### 3.1. Configuration de la clé usb
-Entware nécessite une clé usb formatée en EXT2, branchée sur le port usb du routeur. Facile si vous avez un ordinateur sous linux. Moins facile sous Windows... Le mieux, est d'utiliser [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) si votre PC est sous Windows. Rien de bien complexe : on installe l'application, on clique droit sur sa clé, on supprime la ou les partitions déjà présentes. On reclique droit et on crée une partition EXT2 d'au moins 2Go. On clique ok, et appliquer.  
+Entware nécessite une clé usb formatée en EXT2, branchée sur le port usb du routeur. Facile si vous avez un ordinateur sous linux. Moins facile sous Windows... Le mieux, est d'utiliser [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) si votre PC est sous Windows. Rien de bien complexe : on installe l'application, on clique droit sur sa clé, on supprime la ou les partitions déjà présentes. On re-clique droit et on crée une partition EXT2 d'au moins 2Go. On clique ok, et appliquer.  
   
 ### 3.2. Installation d'entware
 La clé branchée, on se connecte en SSH au routeur avec PuTTY, et on tape :
@@ -70,7 +70,17 @@ Le terminal va afficher :
  =>  Please enter partition number or 0 to exit
 ```
 On choisit la partition en tapant le chiffre correspondant, et hop. C'est fini.  
+  
+Note : si votre routeur permet l'utilisation d'entware en version 64bits, un message supplémentaire apparaîtra avant le choix de la partition :
+```shell
+ Info:  This platform supports both 64bit and 32bit Entware installations.
+ Info:  64bit support is recommended, but 32bit support may be required
+ Info:    if you are using other 32bit applications.
+ Info:  The 64bit installation is also better optimized for newer kernels.
 
+ =>  Do you wish to install the 64bit version? (y/n)
+```
+Si c'est le cas, répondez "Yes".
 ## 4. Utiliser le DynHost d'Ovh sur son routeur
 <a href="https://www.ovh.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Logo-OVH.svg/256px-Logo-OVH.svg.png"></a>  
 Comme indiqué en introduction, je possède un nom de domaine Ovh, et je souhaite accéder aux différents services que j'héberge chez moi, via cette adresse. Problème, je n'ai pas une ip fixe : si je lie pouet.fr à mon adresse ip, au premier changement d'ip, l'adresse ne pointera plus chez moi. Je vais donc créer des enregistrements chez Ovh et utiliser mon routeur pour mettre à jour l'adresse ip liée. Pour cela, il faut faire une manipulation chez Ovh, et créer un script sur le routeur.  
@@ -142,7 +152,7 @@ On ajoute des règles dans le firewall pour que nginx puisse écouter les ports 
 ```shell
 vi /jffs/scripts/firewall-start
 ```
-On colle ça dans le script (et comme précédemment, pour quitter vi, on fait Esc, puis "ZZ") :  
+On tape "i", puis on colle ça dans le script (et comme précédemment, pour quitter vi, on fait Esc, puis "ZZ") :  
 ```bash
 #!/bin/sh
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
@@ -351,19 +361,19 @@ Alors, on commence par télécharger Acme.sh
 wget https://github.com/Neilpang/acme.sh/archive/master.zip
 ```
 
-Décompresser l'archive. J'ai choisi de décompresser l'archive dans /jffs/acme.sh. Mais de toutes façons, ce dossier sera supprimé après.
+Décompresser l'archive. J'ai choisi de décompresser l'archive dans /jffs. Mais de toutes façons, ce dossier sera supprimé après.
 ```shell
-unzip master.zip -d /jffs/acme.sh
+unzip master.zip -d /jffs
 ```
 
-On va dans le dossier créé
+On va dans le dossier dézippé :
 ```shell
-cd /jffs/acme.sh/
+cd /jffs/acme.sh-master/
 ```
 
 On rend le script exécutable
 ```shell
-chmod a+x /jffs/acme.sh/*
+chmod a+x /jffs/acme.sh-master/*
 ```
 
 Et on installe le script dans /jffs/scripts/acme.sh, l'argument "--home" permet de définir l'emplacement de l'installation ; cet argument devra être utilisé à CHAQUE FOIS. La partition jffs sera conservée lors d'un reboot. Il est donc conseillé d'installer le script dedans.
@@ -418,26 +428,33 @@ On installe le script dans nginx.
 ```
 A noter, que le chemin que j'indique pour la clé et le certificat est celui indiqué dans la configuration de nginx. Indiquez bien la même !  
   
-On ajoute cette ligne pour le renouvellement automatique des certificats, qui se lancera tous les jours à 2h du matin.
+On ajoute ensuite une ligne au fichier services-start pour le renouvellement automatique des certificats, qui se lancera tous les jours à 2h du matin. Pour cela, il faut faire *vi /jffs/scripts/services-start* et on agjoute cette ligne (pour ça, on tape i, puis Esc et ZZ quand c’est collé) :
 ```shell
 cru a "acme.sh" '0 2 * * * /jffs/scripts/acme.sh/acme.sh --cron --home "/jffs/scripts/acme.sh" > /dev/null'
 ```
-
+  
 On active la mise à jour automatique de acme.sh via la ligne de commande suivante :
 ```shell
 ./acme.sh --home "/jffs/scripts/acme.sh" --upgrade --auto-upgrade
 ```
 
-On peut supprimer le dossier acme.sh présent dans jffs.
+On peut supprimer le dossier acme.sh-master présent dans jffs.
 ```shell
-rm -r /jffs/acme.sh/
+rm -r /jffs/acme.sh-master/
 ```
   
 Et on peut enfin lancer nginx :
 ```shell
 /opt/etc/init.d/S80nginx start
 ```
-
+  
+Note : Il peut arriver que nginx n'ait pas assez de mémoire pour se lancer. Le message d'erreur suivant s'affiche alors :
+```shell
+nginx: [alert] mmap(MAP_ANON|MAP_SHARED, 52428800) failed (12: Cannot allocate memory)
+```
+  
+Il suffit de redémarrer le routeur pour régler le problème.
+  
 ## 8. Quelques mots en conclusion
 Chez moi, nginx fonctionne très bien, mais une mise à jour du routeur peut supprimer la totalité du travail fait ici. Pensez donc à bien sauvegarder la configuration du routeur et la partition JFFS depuis l'interface du routeur !
   

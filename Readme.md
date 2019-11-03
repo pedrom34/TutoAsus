@@ -72,6 +72,16 @@ The terminal will show:
 ```
 We choose the partition by typing the corresponding digit, and hop. It's over.  
   
+Note: if your router allows it, another message will appear before asking for a partition, asking for the version of entware you want to use, 32 or 64bits:
+```shell
+ Info:  This platform supports both 64bit and 32bit Entware installations.
+ Info:  64bit support is recommended, but 32bit support may be required
+ Info:    if you are using other 32bit applications.
+ Info:  The 64bit installation is also better optimized for newer kernels.
+
+ =>  Do you wish to install the 64bit version? (y/n)
+```
+If that's the case, answer yes.  
 ## 4. Using Ovh DynHost on your router
 <a href="https://www.ovh.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Logo-OVH.svg/256px-Logo-OVH.svg.png"></a>  
 As indicated in the introduction, I have an Ovh domain name, and I want to access the different services I host at home, via this address. Problem, I don't have a static ip: if I link pouet.fr to my ip address, at the first ip change, the address will no longer point to my home. So I will create records at Ovh and use my router to update the linked ip address. To do this, you have to do a manipulation on Ovh admin console, and create a script on the router that will run periodically to update the IP address.  
@@ -352,19 +362,19 @@ So, we start with downloading the script.
 wget https://github.com/Neilpang/acme.sh/archive/master.zip
 ```
   
-Unzip the archive. I chose to unzip it to /jffs/acme.sh. In any cases, the folder will be deleted afterwards.
+Unzip the archive. I chose to unzip it to /jffs. In any cases, the folder will be deleted afterwards.
 ```shell
-unzip master.zip -d /jffs/acme.sh
+unzip master.zip -d /jffs
 ```
   
 Go to the folder
 ```shell
-cd /jffs/acme.sh/
+cd /jffs/acme.sh-master/
 ```
   
 Make the script executable.
 ```shell
-chmod a+x /jffs/acme.sh/*
+chmod a+x /jffs/acme.sh-master/*
 ```
   
 And then install the script to /jffs/scripts/acme.sh, the "--home" argument allows you to define the installation folder; this argument must be used EVERY TIME. The jffs partition will be kept during a reboot. It is therefore recommended to install the script inside.
@@ -419,7 +429,7 @@ Install the script in nginx.
 ```
 Note that the path I indicate for the key and the certificate is the one indicated in the nginx configuration. Make sure it's the same! 
   
-This line is added for the automatic renewal of certificates, which will be launched every day at 2am.
+We need to add a line to services-start for the automatic renewal of certificates, which will be launched every day at 2am. To do so, we need to type *vi /jffs/scripts/services-start* and then add this line (again, type i, then Esc and ZZ once you pasted the line):
 ```shell
 cru a "acme.sh" '0 2 * * * /jffs/scripts/acme.sh/acme.sh --cron --home "/jffs/scripts/acme.sh" > /dev/null'
 ```
@@ -429,15 +439,21 @@ The automatic update of acme.sh is activated via the following command line:
 ./acme.sh --home "/jffs/scripts/acme.sh" --upgrade --auto-upgrade
 ```
 
-The acme.sh folder in jffs can now be deleted.
+The acme.sh-master folder in jffs can now be deleted.
 ```shell
-rm -r /jffs/acme.sh/
+rm -r /jffs/acme.sh-master/
 ```
   
 And finally you can start nginx:
 ```shell
 /opt/etc/init.d/S80nginx start
 ```
+Note: at this point, nginx might not have enough memory. This erro will show:
+```shell
+nginx: [alert] mmap(MAP_ANON|MAP_SHARED, 52428800) failed (12: Cannot allocate memory)
+```
+  
+Just reboot the router to solve the problem, then try again to launch nginx.
   
 ## 8. A few words of conclusion
 At home, nginx works very well, but a router update can remove all the work done here. Remember to save the router configuration and the JFFS partition from the router interface!

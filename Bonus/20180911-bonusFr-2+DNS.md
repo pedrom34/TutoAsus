@@ -33,8 +33,7 @@ Maintenant, pour générer un certificat, il faut modifier les commandes du scri
 ./acme.sh  --home "/jffs/scripts/acme.sh" --issue  \
 -d domain1.ovh  --dns dns_ovh \
 -d *.domain1.ovh  --dns dns_ovh \
--d domain2.duckdns.org  --dns dns_duckdns  \
--d *.domain2.duckdns.org --dns dns_duckdns
+-d *.domain2.duckdns.org --insecure --dns dns_duckdns
 ```
   
 - Installer le certificat dans nginx :
