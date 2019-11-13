@@ -448,7 +448,7 @@ And finally you can start nginx:
 ```shell
 /opt/etc/init.d/S80nginx start
 ```
-Note: at this point, nginx might not have enough memory. This erro will show:
+Note: at this point, nginx might not have enough memory. This error will show:
 ```shell
 nginx: [alert] mmap(MAP_ANON|MAP_SHARED, 52428800) failed (12: Cannot allocate memory)
 ```
