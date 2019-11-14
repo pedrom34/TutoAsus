@@ -111,11 +111,11 @@ It is also possible to create a wildcard redirect. Just delete the existing CNAM
 >![Redirection Ovh 5](https://i.imgur.com/0II2GZY.png)  
 
 ### 4.2. Router side
-In order for the router to update the ip address to which the domain points, you must use the router's DDNS function. By default, a series of suppliers like no-ip is proposed, but not Ovh. So you have to create a personal script. You are lucky, I tested and adapted [one](https://gist.github.com/pedrom34/0bfdf2bb7f2e17a8859c1fad7204d7bf).  
+In order for the router to update the ip address to which the domain points, you must use the router's DDNS function. By default, a series of suppliers like no-ip is proposed, but not Ovh. So you have to create a personal script. You are lucky, I tested and adapted [one](https://github.com/pedrom34/TutoAsus/raw/master/Data/asuswrt-ovh-ddns-start.sh).  
   
 We connect to the router via the terminal, and:
 ```shell
-wget https://gist.githubusercontent.com/pedrom34/0bfdf2bb7f2e17a8859c1fad7204d7bf/raw/d92e3c5f87afd6b0870db8a8eb0fd597ec904a7c/asuswrt-ovh-ddns.sh -O /jffs/scripts/ddns-start
+wget https://github.com/pedrom34/TutoAsus/raw/master/Data/asuswrt-ovh-ddns-start.sh -O /jffs/scripts/ddns-start
 ``` 
 Then we edit the downloaded script.
 ```shell
