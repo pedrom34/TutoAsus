@@ -110,11 +110,11 @@ A noter qu'il est possible créer une redirection wildcard. Il suffit pour cela 
 >![Redirection Ovh 5](https://i.imgur.com/0II2GZY.png)  
 
 ### 4.2. Côté routeur
-Pour que le routeur puisse mettre à jour l'adresse ip sur laquelle pointe le domaine, il faut utiliser la fonction DDNS du routeur. Par défaut, une série de fournisseurs comme no-ip est proposée, mais pas Ovh. Il faut donc créer un script personnel. Vous avez de la chance, j'en ai testé et adapté [un](https://gist.github.com/pedrom34/0bfdf2bb7f2e17a8859c1fad7204d7bf).  
+Pour que le routeur puisse mettre à jour l'adresse ip sur laquelle pointe le domaine, il faut utiliser la fonction DDNS du routeur. Par défaut, une série de fournisseurs comme no-ip est proposée, mais pas Ovh. Il faut donc créer un script personnel. Vous avez de la chance, j'en ai testé et adapté [un](https://github.com/pedrom34/TutoAsus/raw/master/Data/asuswrt-ovh-ddns-start.sh).  
   
 On se connecte au routeur via le terminal, et :
 ```shell
-wget https://gist.githubusercontent.com/pedrom34/0bfdf2bb7f2e17a8859c1fad7204d7bf/raw/d92e3c5f87afd6b0870db8a8eb0fd597ec904a7c/asuswrt-ovh-ddns.sh -O /jffs/scripts/ddns-start
+wget https://github.com/pedrom34/TutoAsus/raw/master/Data/asuswrt-ovh-ddns-start.sh -O /jffs/scripts/ddns-start
 ``` 
 Puis on édite le script téléchargé.
 ```shell
