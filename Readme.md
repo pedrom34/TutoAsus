@@ -54,6 +54,8 @@ As for SSH access, it will be necessary later, because most of the tutorial will
 Entware requires an EXT2 formatted USB flash drive, connected to the router's USB port. Easy with Linux, less with Windows... The best is to use [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) if your PC is running Windows. Nothing complex: install the application, right click on the USB key, delete the partition or partitions already present. Right-click and create an EXT2 partition of at least 2GB. Click ok, and apply.  
 
 ### 3.2 Installation of entware
+
+#### 3.2.1 Installation on version older than 384.15:
 The key plugged in, we connect in SSH to the router with PuTTY, and type:
 ```shell
 entware-setup.sh
@@ -82,6 +84,15 @@ Note: if your router allows it, another message will appear before asking for a 
  =>  Do you wish to install the 64bit version? (y/n)
 ```
 If that's the case, answer yes.  
+
+#### 3.2.2 Installation on version newer than 384.15:
+The key plugged in, we connect in SSH to the router with PuTTY, and type:
+```shell
+amtm
+```
+  
+The terminal will launch amtm script. Just type "i" to launch the install menu, then type "ep" to install entware.
+  
 ## 4. Using Ovh DynHost on your router
 <a href="https://www.ovh.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Logo-OVH.svg/256px-Logo-OVH.svg.png"></a>  
 As indicated in the introduction, I have an Ovh domain name, and I want to access the different services I host at home, via this address. Problem, I don't have a static ip: if I link pouet.fr to my ip address, at the first ip change, the address will no longer point to my home. So I will create records at Ovh and use my router to update the linked ip address. To do this, you have to do a manipulation on Ovh admin console, and create a script on the router that will run periodically to update the IP address.  

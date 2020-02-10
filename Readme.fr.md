@@ -53,6 +53,8 @@ Quant à l'accès SSH, il sera nécessaire par la suite, car la quasi-totalité 
 Entware nécessite une clé usb formatée en EXT2, branchée sur le port usb du routeur. Facile si vous avez un ordinateur sous linux. Moins facile sous Windows... Le mieux, est d'utiliser [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) si votre PC est sous Windows. Rien de bien complexe : on installe l'application, on clique droit sur sa clé, on supprime la ou les partitions déjà présentes. On re-clique droit et on crée une partition EXT2 d'au moins 2Go. On clique ok, et appliquer.  
   
 ### 3.2. Installation d'entware
+
+#### 3.2.1. Installation sur une version antérieur à 384.15 :
 La clé branchée, on se connecte en SSH au routeur avec PuTTY, et on tape :
 ```shell
 entware-setup.sh
@@ -81,6 +83,14 @@ Note : si votre routeur permet l'utilisation d'entware en version 64bits, un mes
  =>  Do you wish to install the 64bit version? (y/n)
 ```
 Si c'est le cas, répondez "Yes".
+
+#### 3.2.2 Installation sur une version postérieure à 384.15 :
+La clé branchée, on se connecte en SSH au routeur avec PuTTY, et on tape :
+```shell
+amtm
+```
+  
+Le terminal va lancer le script amtm. Il suffit de taper "i" pour lancer le menu d'installation, et ensuite de taper "ep" pour installer entware.
 ## 4. Utiliser le DynHost d'Ovh sur son routeur
 <a href="https://www.ovh.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Logo-OVH.svg/256px-Logo-OVH.svg.png"></a>  
 Comme indiqué en introduction, je possède un nom de domaine Ovh, et je souhaite accéder aux différents services que j'héberge chez moi, via cette adresse. Problème, je n'ai pas une ip fixe : si je lie pouet.fr à mon adresse ip, au premier changement d'ip, l'adresse ne pointera plus chez moi. Je vais donc créer des enregistrements chez Ovh et utiliser mon routeur pour mettre à jour l'adresse ip liée. Pour cela, il faut faire une manipulation chez Ovh, et créer un script sur le routeur.  
