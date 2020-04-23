@@ -49,8 +49,8 @@ Ma config arrête nginx, fait tourner les logs, les compresse, puis relance ngin
 ## Mise en place d'une tâche cron
 Afin que logrotate soit lancé automatiquement régulièrement, il faut modifier le fichier services-start :
 ```shell
-vi /jffs/scripts/services-start```
-  
+vi /jffs/scripts/services-start
+```
 pour y ajouter - à la fin - la ligne suivante :
 ```shell
 cru a "logrotate" '0 2 * * 1 logrotate /opt/etc/logrotate.d/nginx > /dev/null'
