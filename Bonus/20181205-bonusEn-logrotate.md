@@ -49,8 +49,8 @@ My config stops nginx, rotates the logs, compresses them, then restarts nginx. F
 ## Setting up a cron job
 In order for logrotate to be launched automatically on a regular basis, it is necessary to modify the services-start file:
 ```shell
-vi /jffs/scripts/services-start```
-  
+vi /jffs/scripts/services-start
+```
 to add - at the end - the following line:
 ```shell
 cru a "logrotate" '0 2 * * 1 logrotate /opt/etc/logrotate.d/nginx > /dev/null'
