@@ -373,24 +373,24 @@ So, we start with downloading the script.
 wget https://github.com/Neilpang/acme.sh/archive/master.zip
 ```
   
-Unzip the archive. I chose to unzip it to /jffs. In any cases, the folder will be deleted afterwards.
+Unzip the archive. I chose to unzip it to /opt, that is the usb device plugged in. In any cases, the folder will be deleted afterwards.
 ```shell
-unzip master.zip -d /jffs
+unzip master.zip -d /opt
 ```
   
 Go to the folder
 ```shell
-cd /jffs/acme.sh-master/
+cd /opt/acme.sh-master/
 ```
   
 Make the script executable.
 ```shell
-chmod a+x /jffs/acme.sh-master/*
+chmod a+x /opt/acme.sh-master/*
 ```
   
-And then install the script to /jffs/scripts/acme.sh, the "--home" argument allows you to define the installation folder; this argument must be used EVERY TIME. The jffs partition will be kept during a reboot. It is therefore recommended to install the script inside.
+And then install the script to /opt/scripts/acme.sh, the "--home" argument allows you to define the installation folder; this argument must be used EVERY TIME. 
 ```shell
-./acme.sh --install --home "/jffs/scripts/acme.sh"
+./acme.sh --install --home "/opt/scripts/acme.sh"
 ```
 ### 7.2. Ovh API keys
 I configure the script to use Ovh API to create TXT fields in domain records, thus justifying my property for Let's Encrypt. 
@@ -398,7 +398,7 @@ I configure the script to use Ovh API to create TXT fields in domain records, th
 The keys are created on https://eu.api.ovh.com/createApp/  
 Make a note of the information displayed, then, in the terminal, go to the acme.sh folder
 ```shell
-cd /jffs/scripts/acme.sh
+cd /opt/scripts/acme.sh
 ```
 
 And install the Ovh API keys that we got in the previous step, by typing in the terminal (replace by your information):
@@ -409,7 +409,7 @@ export OVH_AS="Ovh Application Secret"
   
 Then, generate the certificate. Here, we can see that I request a wildcard certificate \*.domain.tld* as well as for the root domain (domain.tld).
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Anyway, it will fail, and return an error message like this:
@@ -428,12 +428,12 @@ Indeed, you must go, the first time only, to the address indicated in the script
   
 Then do it again, this time it will work:
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Install the script in nginx.
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --install-cert -d domain.tld \
+./acme.sh --home "/opt/scripts/acme.sh" --install-cert -d domain.tld \
 --key-file       /opt/etc/nginx/cert.key  \
 --fullchain-file /opt/etc/nginx/cert.crt \
 --reloadcmd     "/opt/etc/init.d/S80nginx reload"
@@ -442,17 +442,17 @@ Note that the path I indicate for the key and the certificate is the one indicat
   
 We need to add a line to services-start for the automatic renewal of certificates, which will be launched every day at 2am. To do so, we need to type *vi /jffs/scripts/services-start* and then add this line (again, type i, then Esc and ZZ once you pasted the line):
 ```shell
-cru a "acme.sh" '0 2 * * * /jffs/scripts/acme.sh/acme.sh --cron --home "/jffs/scripts/acme.sh" > /dev/null'
+cru a "acme.sh" '0 2 * * * /opt/scripts/acme.sh/acme.sh --cron --home "/opt/scripts/acme.sh" > /dev/null'
 ```
 
 The automatic update of acme.sh is activated via the following command line:
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --upgrade --auto-upgrade
+./acme.sh --home "/opt/scripts/acme.sh" --upgrade --auto-upgrade
 ```
 
-The acme.sh-master folder in jffs can now be deleted.
+The acme.sh-master folder in opt can now be deleted.
 ```shell
-rm -r /jffs/acme.sh-master/
+rm -r /opt/acme.sh-master/
 ```
   
 And finally you can start nginx:

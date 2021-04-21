@@ -371,24 +371,24 @@ Alors, on commence par télécharger Acme.sh
 wget https://github.com/Neilpang/acme.sh/archive/master.zip
 ```
 
-Décompresser l'archive. J'ai choisi de décompresser l'archive dans /jffs. Mais de toutes façons, ce dossier sera supprimé après.
+Décompresser l'archive. J'ai choisi de décompresser l'archive dans /opt (ce qui correspond à la clé usb branchée sur le routeur). Mais de toutes façons, ce dossier sera supprimé après.
 ```shell
-unzip master.zip -d /jffs
+unzip master.zip -d /opt
 ```
 
 On va dans le dossier dézippé :
 ```shell
-cd /jffs/acme.sh-master/
+cd /opt/acme.sh-master/
 ```
 
 On rend le script exécutable
 ```shell
-chmod a+x /jffs/acme.sh-master/*
+chmod a+x /opt/acme.sh-master/*
 ```
 
-Et on installe le script dans /jffs/scripts/acme.sh, l'argument "--home" permet de définir l'emplacement de l'installation ; cet argument devra être utilisé à CHAQUE FOIS. La partition jffs sera conservée lors d'un reboot. Il est donc conseillé d'installer le script dedans.
+Et on installe le script dans /opt/scripts/acme.sh, l'argument "--home" permet de définir l'emplacement de l'installation ; cet argument devra être utilisé à CHAQUE FOIS.  
 ```shell
-./acme.sh --install --home "/jffs/scripts/acme.sh"
+./acme.sh --install --home "/opt/scripts/acme.sh"
 ```
 ### 7.2. Création des clés api de Ovh
 Je configure le script pour qu'il utilise l'api d'Ovh pour créer des champs TXT dans les enregistrements de domaine, justifiant ainsi ma propriété pour Let's Encrypt. 
@@ -396,7 +396,7 @@ Je configure le script pour qu'il utilise l'api d'Ovh pour créer des champs TXT
 On crée les clés sur https://eu.api.ovh.com/createApp/  
 Notez bien les informations affichées, puis, dans le terminal, on se rend le dossier acme.sh
 ```shell
-cd /jffs/scripts/acme.sh
+cd /opt/scripts/acme.sh
 ```
 
 Et on installe les clés d'api Ovh que l'on a eu à l'étape précédente, en tapant dans le terminal (remplacez par vos informations) :
@@ -407,7 +407,7 @@ export OVH_AS="Ovh Application Secret"
   
 Ensuite, on génère le certificat, ici, on voit que je demande un certificat wildcard \*.domain.tld* ainsi que pour la racine du domaine (domain.tld).
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Quoi qu'il en soit, cela va échouer, et renvoyer un message d'erreur comme suivant :
@@ -426,12 +426,12 @@ En effet, il faut se rendre, la première fois uniquement, à l’adresse qu'ind
   
 Ensuite, on recommence, cette fois, ça doit fonctionner :
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 On installe le script dans nginx.
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --install-cert -d domain.tld \
+./acme.sh --home "/opt/scripts/acme.sh" --install-cert -d domain.tld \
 --key-file       /opt/etc/nginx/cert.key  \
 --fullchain-file /opt/etc/nginx/cert.crt \
 --reloadcmd     "/opt/etc/init.d/S80nginx reload"
@@ -440,17 +440,17 @@ A noter, que le chemin que j'indique pour la clé et le certificat est celui ind
   
 On ajoute ensuite une ligne au fichier services-start pour le renouvellement automatique des certificats, qui se lancera tous les jours à 2h du matin. Pour cela, il faut faire *vi /jffs/scripts/services-start* et on agjoute cette ligne (pour ça, on tape i, puis Esc et ZZ quand c’est collé) :
 ```shell
-cru a "acme.sh" '0 2 * * * /jffs/scripts/acme.sh/acme.sh --cron --home "/jffs/scripts/acme.sh" > /dev/null'
+cru a "acme.sh" '0 2 * * * /opt/scripts/acme.sh/acme.sh --cron --home "/opt/scripts/acme.sh" > /dev/null'
 ```
   
 On active la mise à jour automatique de acme.sh via la ligne de commande suivante :
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --upgrade --auto-upgrade
+./acme.sh --home "/opt/scripts/acme.sh" --upgrade --auto-upgrade
 ```
 
 On peut supprimer le dossier acme.sh-master présent dans jffs.
 ```shell
-rm -r /jffs/acme.sh-master/
+rm -r /opt/acme.sh-master/
 ```
   
 Et on peut enfin lancer nginx :
