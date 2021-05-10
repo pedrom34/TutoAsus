@@ -30,7 +30,7 @@ fi
 Maintenant, pour générer un certificat, il faut modifier les commandes du script acme.sh comme ceci :
 - Générer le certificat :
 ```shell
-./acme.sh  --home "/jffs/scripts/acme.sh" --issue  \
+./acme.sh  --home "/opt/scripts/acme.sh" --issue  \
 -d domain1.ovh  --dns dns_ovh \
 -d *.domain1.ovh  --dns dns_ovh \
 -d *.domain2.duckdns.org --insecure --dns dns_duckdns
@@ -38,7 +38,7 @@ Maintenant, pour générer un certificat, il faut modifier les commandes du scri
   
 - Installer le certificat dans nginx :
 ```shell
-./acme.sh --home "/jffs/scripts/acme.sh" --install-cert \
+./acme.sh --home "/opt/scripts/acme.sh" --install-cert \
 -d domain1.ovh -d domain2.duckdns.org \
 --key-file  /opt/etc/nginx/cert.key \
 --fullchain-file  /opt/etc/nginx/cert.crt \
