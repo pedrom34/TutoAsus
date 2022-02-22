@@ -19,7 +19,7 @@ Lire dans une autre langue : [Français 🇫🇷](Readme.fr.md), [English 🇬�
 A reverse proxy is a small server that provides access to the user interfaces behind it, for example: camera web interfaces, multimedia servers, Nas, self-hosted calendar or email, etc. The goal is to access resources from the outside, without having to use a VPN. VPN and reverse proxy are not mutually exclusive as the proxy really is useful for web interfaces. In addition, the VPN allows increased security, when using public wifi for instance.  
   
 ### 0.1. What about security?
-The reverse proxy *can be* secrure. You just have to use a certificate, the connection will be encrypted between the external computer and the proxy. And with Let's Encrypt, it is possible to have a free certificate recognized by browsers and the little green padlock! In addition, Let's Encrypt launched in 2018 the support for *wildcard* certificates: it is now possible to request a certificate for "\*.domain.com" rather than "pouet.domain.com, pouet2.domain. com, ... ". Last, you can also add authentication for interfaces that doesn't natively provide it.
+The reverse proxy *can be* secure. You just have to use a certificate, the connection will be encrypted between the external computer and the proxy. And with Let's Encrypt, it is possible to have a free certificate recognized by browsers and the little green padlock! In addition, Let's Encrypt launched in 2018 the support for *wildcard* certificates: it is now possible to request a certificate for "\*.domain.com" rather than "pouet.domain.com, pouet2.domain. com, ... ". Last, you can also add authentication for interfaces that doesn't natively provide it.
   
 ### 0.2. In real terms...
 I set up this configuration because I have an Asus router - AC86U - behind the box provided by my ISP, it is there to fill the gaps of this box: custom DNS, firewall and advanced DHCP, VPN server and client, dnsmasq, etc. And this router also allows me to run nginx - which I use as a reverse proxy - and to use my Ovh domain with my dynamic IP address (DynHost).  
@@ -48,10 +48,10 @@ As for SSH access, it will be necessary later, because most of the tutorial will
   
 ## 3 Install Entware
 <a href="http://entware.net/about.html" target="_blank"><img src="https://avatars3.githubusercontent.com/u/6337854?s=200&v=4" width="165"></a>  
-[Entware](http://entware.net/about.html) is free software, it is a packet manager for embedded systems, like Nas or routers. It allows to add a lot of softwares normally unavailable, like the nano text editor for example. Entware's advantage in this tutorial is that it allows you to install nginx.
+[Entware](http://entware.net/about.html) is free software, it is a packet manager for embedded systems, like Nas or routers. It allows adding a lot of programs normally unavailable, like the nano text editor for example. Entware's advantage in this tutorial is that it allows you to install nginx.
   
 ### 3.1. Configuring the USB flash drive
-Entware requires an EXT2 formatted USB flash drive, connected to the router's USB port. Easy with Linux, less with Windows... The best is to use [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) if your PC is running Windows. Nothing complex: install the application, right click on the USB key, delete the partition or partitions already present. Right-click and create an EXT2 partition of at least 2GB. Click ok, and apply.  
+Entware requires an EXT2 formatted USB flash drive, connected to the router's USB port. Easy with Linux, less with Windows... The best is to use [MiniTool Partition Wizard Home Edition](https://www.partitionwizard.com/free-partition-manager.html) if your PC is running Windows. Nothing complex: install the application, right click on the USB key, and delete the partition or partitions already present. Right-click and create an EXT2 partition of at least 2GB. Click ok, and apply.  
 
 ### 3.2 Installation of entware
 
