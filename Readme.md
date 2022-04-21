@@ -27,7 +27,7 @@ I set up this configuration because I have an Asus router - AC86U - behind the b
 I originally did this markdown file to remember what I had done. So why not share?
   
 ## 1. Install Merlin on the router
-<a href="https://asuswrt.lostrealm.ca/" target="_blank"><img src="https://dpfpic.com/data/medias/Box/Asuswrt-Merlin.png" width="250"></a>  
+<a href="https://asuswrt.lostrealm.ca/" target="_blank"><img src="Data/asuswrtmerlin.png"></a>  
 The Merlin firmware is a modification of the official Asus firmware. It has the advantage of offering many improvements without removing Asus pleasant graphical interface. It also allows Entware to be used - I'll come back to this a little later.  
 Installing Merlin is very simple, just download the firmware from https://asuswrt.lostrealm.ca/download, and flash the file from Administration > Firmware Upgrade.  
   
