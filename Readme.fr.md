@@ -27,7 +27,7 @@ J'ai mis en place cette configuration car je possède un routeur Asus - un AC86U
 J'ai fait ce tuto à la base pour me souvenir de ce que j'avais fait. Alors, pourquoi ne pas partager ?
   
 ## 1. Installer Merlin sur son routeur
-<a href="https://asuswrt.lostrealm.ca/" target="_blank"><img src="Data/asuswrtmerlin.png"></a>  
+<a href="https://www.asuswrt-merlin.net/download" target="_blank"><img src="Data/asuswrtmerlin.png"></a>  
 Le firmware (programme intégré au matériel) Merlin est une modification du firmware officiel d'Asus. Il a l'avantage de proposer pas mal d'améliorations sans pour autant supprimer l'interface graphique bien agréable d'Asus. Il permet également d'utiliser Entware - j'y reviendrais juste un peu après.  
 Installer Merlin se fait très simplement, comme une mise à jour du routeur, il y a énormément de tutos en ligne, en voici un, très clair : http://tex.fr/firmware-asuswrt-merlin/  
 Il n'y a pas vraiment de risque à utiliser Merlin, car il est très facile de revenir en arrière, et de réinstaller le firmware officiel.  
