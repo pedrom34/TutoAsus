@@ -407,9 +407,9 @@ export OVH_AK="Ovh Application Key"
 export OVH_AS="Ovh Application Secret"
 ```
   
-Then, generate the certificate. Here, we can see that I request a wildcard certificate \*.domain.tld* as well as for the root domain (domain.tld).
+Then, generate the certificate. Here, we can see that I request a wildcard certificate \*.domain.tld* as well as for the root domain (domain.tld). I prefer letsencrypt but the default server is zerossl, see [here](https://github.com/acmesh-official/acme.sh/wiki/Server) for more information on why I use "--server" argument.
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --home "/opt/scripts/acme.sh" --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Anyway, it will fail, and return an error message like this:
@@ -428,7 +428,7 @@ Indeed, you must go, the first time only, to the address indicated in the script
   
 Then do it again, this time it will work:
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --home "/opt/scripts/acme.sh" --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Install the script in nginx.

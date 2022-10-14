@@ -405,9 +405,9 @@ export OVH_AK="Ovh Application Key"
 export OVH_AS="Ovh Application Secret"
 ```
   
-Ensuite, on génère le certificat, ici, on voit que je demande un certificat wildcard \*.domain.tld* ainsi que pour la racine du domaine (domain.tld).
+Ensuite, on génère le certificat, ici, on voit que je demande un certificat wildcard \*.domain.tld* ainsi que pour la racine du domaine (domain.tld). ZeroSSL est le serveur acme par défaut, mais je préfère let's encrypt. Pour plus d'information sur le paramètre "--server" cliquez [ici](https://github.com/acmesh-official/acme.sh/wiki/Server).
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --home "/opt/scripts/acme.sh" --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Quoi qu'il en soit, cela va échouer, et renvoyer un message d'erreur comme suivant :
