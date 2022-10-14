@@ -31,7 +31,7 @@ fi
 Now, to get the certificate with this particular situation, you just have to modify the acme.sh commands like this:  
 - Issue the cert:  
 ```shell
-./acme.sh  --home "/opt/scripts/acme.sh" --issue  \
+./acme.sh  --home "/opt/scripts/acme.sh" --server letsencrypt --issue  \
 -d domain1.ovh  --dns dns_ovh \
 -d *.domain1.ovh  --dns dns_ovh \
 -d *.domain2.duckdns.org --insecure --dns dns_duckdns
@@ -45,4 +45,3 @@ Now, to get the certificate with this particular situation, you just have to mod
 --fullchain-file  /opt/etc/nginx/cert.crt \
 --reloadcmd "nginx -s reload"
 ```
-  
