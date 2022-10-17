@@ -388,7 +388,7 @@ Make the script executable.
 chmod a+x /opt/acme.sh-master/*
 ```
   
-And then install the script to /opt/scripts/acme.sh, the "--home" argument allows you to define the installation folder; this argument must be used EVERY TIME. 
+And then install the script to /opt/scripts/acme.sh, the "--home" argument allows you to define the installation folder.  
 ```shell
 ./acme.sh --install --home "/opt/scripts/acme.sh"
 ```
@@ -409,7 +409,7 @@ export OVH_AS="Ovh Application Secret"
   
 Then, generate the certificate. Here, we can see that I request a wildcard certificate \*.domain.tld* as well as for the root domain (domain.tld). I prefer letsencrypt but the default server is zerossl, see [here](https://github.com/acmesh-official/acme.sh/wiki/Server) for more information on why I use "--server" argument.
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Anyway, it will fail, and return an error message like this:
@@ -428,7 +428,7 @@ Indeed, you must go, the first time only, to the address indicated in the script
   
 Then do it again, this time it will work:
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Install the script in nginx.
@@ -442,12 +442,12 @@ Note that the path I indicate for the key and the certificate is the one indicat
   
 We need to add a line to services-start for the automatic renewal of certificates, which will be launched every day at 2am. To do so, we need to type *vi /jffs/scripts/services-start* and then add this line (again, type i, then Esc and ZZ once you pasted the line):
 ```shell
-cru a "acme.sh" '0 2 * * * /opt/scripts/acme.sh/acme.sh --cron --home "/opt/scripts/acme.sh" > /dev/null'
+cru a "acme.sh" '0 2 * * * /opt/scripts/acme.sh/acme.sh --cron > /dev/null'
 ```
 
 The automatic update of acme.sh is activated via the following command line:
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --upgrade --auto-upgrade
+./acme.sh --upgrade --auto-upgrade
 ```
 
 The acme.sh-master folder in opt can now be deleted.
