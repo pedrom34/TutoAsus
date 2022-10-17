@@ -30,7 +30,7 @@ fi
 Maintenant, pour générer un certificat, il faut modifier les commandes du script acme.sh comme ceci :
 - Générer le certificat :
 ```shell
-./acme.sh  --home "/opt/scripts/acme.sh" --server letsencrypt --issue  \
+./acme.sh  --server letsencrypt --issue  \
 -d domain1.ovh  --dns dns_ovh \
 -d *.domain1.ovh  --dns dns_ovh \
 -d *.domain2.duckdns.org --insecure --dns dns_duckdns
