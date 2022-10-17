@@ -386,7 +386,7 @@ On rend le script exécutable
 chmod a+x /opt/acme.sh-master/*
 ```
 
-Et on installe le script dans /opt/scripts/acme.sh, l'argument "--home" permet de définir l'emplacement de l'installation ; cet argument devra être utilisé à CHAQUE FOIS.  
+Et on installe le script dans /opt/scripts/acme.sh, l'argument "--home" permet de définir l'emplacement de l'installation.
 ```shell
 ./acme.sh --install --home "/opt/scripts/acme.sh"
 ```
@@ -407,7 +407,7 @@ export OVH_AS="Ovh Application Secret"
   
 Ensuite, on génère le certificat, ici, on voit que je demande un certificat wildcard \*.domain.tld* ainsi que pour la racine du domaine (domain.tld). ZeroSSL est le serveur acme par défaut, mais je préfère let's encrypt. Pour plus d'information sur le paramètre "--server" cliquez [ici](https://github.com/acmesh-official/acme.sh/wiki/Server).
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --server letsencrypt --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 Quoi qu'il en soit, cela va échouer, et renvoyer un message d'erreur comme suivant :
@@ -426,12 +426,12 @@ En effet, il faut se rendre, la première fois uniquement, à l’adresse qu'ind
   
 Ensuite, on recommence, cette fois, ça doit fonctionner :
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --issue -d *.domain.tld -d domain.tld --dns dns_ovh
+./acme.sh --issue -d *.domain.tld -d domain.tld --dns dns_ovh
 ```
   
 On installe le script dans nginx.
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --install-cert -d domain.tld \
+./acme.sh --install-cert -d domain.tld \
 --key-file       /opt/etc/nginx/cert.key  \
 --fullchain-file /opt/etc/nginx/cert.crt \
 --reloadcmd     "/opt/etc/init.d/S80nginx reload"
@@ -440,12 +440,12 @@ A noter, que le chemin que j'indique pour la clé et le certificat est celui ind
   
 On ajoute ensuite une ligne au fichier services-start pour le renouvellement automatique des certificats, qui se lancera tous les jours à 2h du matin. Pour cela, il faut faire *vi /jffs/scripts/services-start* et on agjoute cette ligne (pour ça, on tape i, puis Esc et ZZ quand c’est collé) :
 ```shell
-cru a "acme.sh" '0 2 * * * /opt/scripts/acme.sh/acme.sh --cron --home "/opt/scripts/acme.sh" > /dev/null'
+cru a "acme.sh" '0 2 * * * /opt/scripts/acme.sh/acme.sh --cron > /dev/null'
 ```
   
 On active la mise à jour automatique de acme.sh via la ligne de commande suivante :
 ```shell
-./acme.sh --home "/opt/scripts/acme.sh" --upgrade --auto-upgrade
+./acme.sh --upgrade --auto-upgrade
 ```
 
 On peut supprimer le dossier acme.sh-master présent dans jffs.
