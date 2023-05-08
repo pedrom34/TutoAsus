@@ -34,10 +34,10 @@ Il n'y a pas vraiment de risque à utiliser Merlin, car il est très facile de r
   
 ## 2. Activer SSH et partition JFFS
 Une fois que le routeur fait tourner Merlin, il faudra se rendre dans Administration > Système, et activer la partition JFFS.
->![Interface routeur, activation de JFFS](https://i.imgur.com/ryhJJ6K.png)  
+>![Interface routeur, activation de JFFS](https://github.com/pedrom34/TutoAsus/blob/8c0be295dfe861122efff71f612d1b85ca7562b0/Data/activation%20de%20JFFS.png)  
   
 Toujours sur la même page, on active l'accès SSH, et on passe l'interface en https sur le port 8443 :  
->![Interface routeur, activation SSH et GUI en https 8443](https://i.imgur.com/nq3UtuH.png)  
+>![Interface routeur, activation SSH et GUI en https 8443](https://github.com/pedrom34/TutoAsus/blob/f0aaf0e1ebf4a2ba212508c6472d24ce451b4eac/Data/activation%20SSH.png)  
   
 JFFS est une partition en écriture de la mémoire flash du routeur, ce qui vous permettra de stocker de petits fichiers (comme des scripts) sans avoir besoin d'avoir un disque USB branché. Cet espace survivra au redémarrage. Il sera également disponible assez tôt au démarrage (avant les disques USB). Bref, cette partition est nécessaire pour ce que l'on veut faire.  
   
@@ -217,7 +217,7 @@ vi /opt/etc/nginx/nginx.conf
 Et quitter vi comme expliqué précédemment pour sauvegarder.  
   
 ### 6.1. Exemple de configuration  
-Un petit exemple avec https exclusivement, il existe des tas d'autres configurations sur internet :
+Il existe des tas d'exemples sur internet. Je vous invite, par exemple, à regarder les configurations reverse-proxy de linuxserver.io [ici](https://github.com/linuxserver/reverse-proxy-confs). Un petit exemple avec https exclusivement :
 
 ```nginx
 user  nobody;
