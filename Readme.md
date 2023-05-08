@@ -219,7 +219,7 @@ vi /opt/etc/nginx/nginx.conf
 And exit vi as explained above to save.  
   
 ### 6.1. Example conf  
-A short example with https only, there are lots of other configurations on the internet:
+There are lots of other configurations on the internet. You can take a look at linuxserver.io reverse-proxy confs [here](https://github.com/linuxserver/reverse-proxy-confs). A short example with https only:
 
 ```nginx
 user  nobody;
