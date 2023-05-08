@@ -3,7 +3,7 @@
 <a href="https://www.dnsomatic.com/" target="_blank"><img src="http://www.dnsomatic.com/img/dnsomatic_logo_2000.gif" width="250"></a>  
   
 Some months after I wrote this tutorial, I needed to add another DynDNS domain to my router. With a quick search, I found that the best solution for me was to use [DNS-O-Matic](https://www.dnsomatic.com/). To make this work, simply add your DynDNS providers in the web interface.
->![Interface DNS-O-Matic](https://i.imgur.com/m1KH826.png)  
+>![Interface DNS-O-Matic](https://github.com/pedrom34/TutoAsus/blob/7c36c9b23080afdcb41476db2e68a65dec60abc8/Data/dnsomatic.png)  
   
 And then modify the script given in [point 4.2.](https://github.com/pedrom34/TutoAsus#42-router-side) with this command:  
   
