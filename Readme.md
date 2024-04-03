@@ -156,9 +156,9 @@ Note that the ddns-start script considers by default that the router is, like mi
   
 Now that everything is set, we can install nginx.  
 ```shell
-opkg install nginx-extras
+opkg install nginx-ssl
 ```
-Why nginx-extras instead of nginx? Because nginx doesn't include some interesting modules for https security.
+Why nginx-ssl instead of nginx? Because nginx doesn't include some interesting modules for https security.
   
 We add rules in the firewall so that nginx can listen to ports 80 and 443:  
 ```shell
