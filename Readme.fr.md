@@ -154,9 +154,9 @@ A noter que le script ddns-start considère par défaut que le routeur est, comm
   
 Bon, maintenant que tout est bon, on installe nginx.  
 ```shell
-opkg install nginx-extras
+opkg install nginx-ssl
 ```
-Pourquoi nginx-extras et pas nginx ? Simplement car nginx tout court n'inclus pas certains modules intéressants pour la sécurité https.
+Pourquoi nginx-ssl et pas nginx ? Simplement car nginx tout court n'inclus pas certains modules intéressants pour la sécurité https.
   
 On ajoute des règles dans le firewall pour que nginx puisse écouter les ports 80 et 443 :  
 ```shell
