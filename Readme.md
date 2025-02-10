@@ -2,6 +2,10 @@
 
 Lire dans une autre langue : [Français 🇫🇷](Readme.fr.md), [English 🇬🇧](Readme.md).  
 
+## Note
+2025/02/10 update:
+I'm not using AsusWRT/Merlin anymore. I don't have an asus router anymore, this is why this repo goes to archive.
+
 ## Menu
 0. [What? Why?](#0-what-why)
 1. [Install Merlin on the router](#1-install-merlin-on-the-router)
