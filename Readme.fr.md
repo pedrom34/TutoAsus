@@ -1,7 +1,10 @@
 ﻿# Installer un reverse proxy SSL sur un routeur Asus avec un nom de domaine Ovh
   
 Read in another language: [English 🇬🇧](Readme.md), [Français 🇫🇷](Readme.fr.md).  
- 
+  
+## Note
+Mise à jour du 10/02/2025 : je n'utilise plus AsusWRT/Merlin. Je n'ai plus de routeur Asus, c'est pourquoi ce dépôt est archivé.
+   
 ## Au menu
 0. [Quoi ? Pourquoi ?](#0-quoi--pourquoi-)
 1. [Installer Merlin sur son routeur](#1-installer-merlin-sur-son-routeur)
